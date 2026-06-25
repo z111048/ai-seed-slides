@@ -59,10 +59,41 @@ body {
   width: 100%;
   height: auto;
   min-height: 100svh;
-  border-bottom: 2px solid rgba(255,255,255,0.06);
+  border-bottom: none;           /* 改由 ::after 做漸層線 */
   scroll-margin-top: 3.5rem;
+  position: relative;
 }
 .slide-wrapper.active { display: flex !important; }
+
+/* 區塊底部分隔：漸層線 + 留白 */
+.slide-wrapper::after {
+  content: '';
+  display: block;
+  flex-shrink: 0;
+  height: 2px;
+  margin: 2rem 1.5rem 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(126,207,255,0.35) 25%,
+    rgba(126,207,255,0.35) 75%,
+    transparent 100%
+  );
+}
+
+/* 封面不需要底部漸層線 */
+#s0::after { display: none; }
+
+/* 附錄分隔線：綠色調 */
+#s5::after, #s6::after, #s7::after, #s8::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(125,218,158,0.3) 25%,
+    rgba(125,218,158,0.3) 75%,
+    transparent 100%
+  );
+}
 
 /* ══════ 封面 ══════ */
 #s0 {
@@ -163,9 +194,16 @@ body {
 .slide-header {
   padding: 1.3rem 2.6rem 0.9rem;
   border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-top: 4px solid rgba(126,207,255,0.55);  /* 主投影片：藍色 accent */
   display: flex;
   align-items: center;
   gap: 1.2rem;
+}
+
+/* 附錄：綠色 accent */
+#s5 .slide-header, #s6 .slide-header,
+#s7 .slide-header, #s8 .slide-header {
+  border-top-color: rgba(125,218,158,0.55);
 }
 .slide-illus {
   height: 5.5rem;
@@ -456,6 +494,15 @@ body {
 #s2 .data-table th,
 #s2 .data-table td { padding: 0.32em 0.5em; }
 
+/* ══════ 附錄：稍深背景與綠色 slide-num ══════ */
+#s5, #s6, #s7, #s8 {
+  background: #141422;   /* 稍深於主投影片 #1a1a2e，形成分組感 */
+}
+#s5 .slide-num, #s6 .slide-num,
+#s7 .slide-num, #s8 .slide-num {
+  color: #7dda9e;
+}
+
 /* ══════ 附錄共用版型 ══════ */
 .appendix-body {
   flex: 1;
@@ -558,6 +605,12 @@ body {
   /* ─ TOC ─ */
   .toc-bar { padding: 0.45rem 0.75rem; gap: 0.4rem; }
   .toc-link { font-size: 0.7rem; padding: 0.25em 0.6em; }
+
+  /* ─ 手機上分隔線縮短留白（2rem → 1.2rem） ─ */
+  .slide-wrapper::after { margin: 1.2rem 1rem 0; }
+
+  /* ─ 手機上 accent bar 稍細 ─ */
+  .slide-header { border-top-width: 3px; }
 }
 
 /* ══════ 列印 ══════ */
