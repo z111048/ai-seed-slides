@@ -687,6 +687,48 @@ body {
   .wf-phase-hd .wf-ph-title { font-size: 0.82rem; }
 }
 
+/* ══════ Agent 工作流程：滾動動畫 ══════ */
+@media (prefers-reduced-motion: no-preference) {
+  #s_workflow .wf-phase {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.52s cubic-bezier(0.22,0.61,0.36,1),
+                transform 0.52s cubic-bezier(0.22,0.61,0.36,1);
+  }
+  #s_workflow .wf-phase.wf-vis { opacity: 1; transform: none; }
+
+  #s_workflow .wf-agent {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition-delay: 0.22s;
+  }
+  #s_workflow .wf-phase.wf-vis .wf-agent { opacity: 1; transform: none; }
+
+  #s_workflow .wf-tool,
+  #s_workflow .wf-out {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.32s ease, transform 0.32s ease;
+  }
+  #s_workflow .wf-phase.wf-vis .wf-tool:nth-child(2) {
+    opacity: 1; transform: none; transition-delay: 0.38s;
+  }
+  #s_workflow .wf-phase.wf-vis .wf-tool:nth-child(3) {
+    opacity: 1; transform: none; transition-delay: 0.52s;
+  }
+  #s_workflow .wf-phase.wf-vis .wf-out {
+    opacity: 1; transform: none; transition-delay: 0.66s;
+  }
+
+  #s_workflow .wf-stat {
+    opacity: 0;
+    transform: translateY(14px) scale(0.95);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  #s_workflow .wf-stat.wf-vis { opacity: 1; transform: none; }
+}
+
 /* ══════ 行動裝置斷點 ══════ */
 @media (max-width: 768px) {
   html { font-size: clamp(12px, 4.5vw, 17px); }
@@ -1934,6 +1976,39 @@ document.querySelectorAll('.data-table').forEach(table => {
   });
 
   sections.forEach(sec => observer.observe(sec));
+})();
+
+// 3. Agent 工作流程：滾動觸發動畫
+(function initWorkflowAnim() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const phaseObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('wf-vis');
+        phaseObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('#s_workflow .wf-phase').forEach(el => phaseObs.observe(el));
+
+  // 統計格：依序 stagger
+  const statObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const stats = entry.target.querySelectorAll('.wf-stat');
+        stats.forEach((s, i) => {
+          s.style.transitionDelay = (i * 0.1) + 's';
+          s.classList.add('wf-vis');
+        });
+        statObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  const statsEl = document.querySelector('#s_workflow .wf-stats');
+  if (statsEl) statObs.observe(statsEl);
 })();
 
 </script>
