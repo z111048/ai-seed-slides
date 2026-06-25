@@ -494,6 +494,53 @@ body {
 #s2 .data-table th,
 #s2 .data-table td { padding: 0.32em 0.5em; }
 
+/* ══════ AI 生圖小卡片 ══════ */
+.slide-img-card {
+  border-radius: 0.8rem;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(0,0,0,0.25);
+  flex-shrink: 0;
+}
+.slide-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.82;
+  transition: opacity 0.3s;
+}
+.slide-img-card:hover img { opacity: 1; }
+
+/* 封面橫幅 */
+#s0 .slide-img-card {
+  width: 100%;
+  height: 11rem;
+  margin-top: 0.8rem;
+}
+
+/* 內容頁：右欄頂端小卡 */
+.col-right .slide-img-card,
+.col-left .slide-img-card {
+  width: 100%;
+  height: 9rem;
+}
+
+/* s3 直向版型 */
+#s3 .slide-img-card {
+  width: 100%;
+  height: 8rem;
+}
+
+/* 附錄頁：左欄小卡 */
+.appendix-body .slide-img-card {
+  width: 100%;
+  height: 9rem;
+}
+
+/* 印列隱藏 */
+@media print { .slide-img-card { display: none !important; } }
+
 /* ══════ 附錄：稍深背景與綠色 slide-num ══════ */
 #s5, #s6, #s7, #s8 {
   background: #141422;   /* 稍深於主投影片 #1a1a2e，形成分組感 */
@@ -911,6 +958,9 @@ body {
     <span><span class="ms ms-sm" style="color:#7ecfff">badge</span> 副工程司</span>
     <span><span class="ms ms-sm" style="color:#7ecfff">person</span> 邱毓權</span>
   </div>
+  <div class="slide-img-card">
+    <img src="img_s0.webp" alt="AI Agent 都市設計審議 — 封面配圖" loading="lazy">
+  </div>
   <div class="tagline">個人議題分享 · 2026-06-25</div>
   <a class="share-link" href="https://z111048.github.io/ai-seed-slides/slides_115AI%E7%A0%94%E7%BF%92%E7%8F%AD%E5%80%8B%E4%BA%BA%E7%B0%A1%E5%A0%B1.html" target="_blank">
     <span class="ms ms-sm">desktop_windows</span> 桌面投影片版
@@ -998,6 +1048,9 @@ body {
     </div>
 
     <div class="col col-right">
+      <div class="slide-img-card">
+        <img src="img_s1.webp" alt="痛點現場 — 都審業務繁重" loading="lazy">
+      </div>
       <div class="card">
         <h3>審議淨工作天（近 5 年實績）</h3>
         <ul>
@@ -1088,6 +1141,9 @@ body {
     </div>
 
     <div class="col col-right">
+      <div class="slide-img-card">
+        <img src="img_s2.webp" alt="AI Agent 架構 — 工具鏈視覺化" loading="lazy">
+      </div>
       <div class="card">
         <h3>已盤點數據資產</h3>
         <ul>
@@ -1269,6 +1325,10 @@ body {
   </div>
   <div class="slide-body" style="flex-direction:column;gap:0.8rem;">
 
+    <div class="slide-img-card">
+      <img src="img_s3.webp" alt="短期可驗證 — KPI 達成儀表板" loading="lazy">
+    </div>
+
     <div class="timeline">
       <div class="tl-phase ph1">
         <h4><span class="ms ms-sm">storage</span> 第 1 個月 — 資料基礎建設</h4>
@@ -1368,6 +1428,9 @@ body {
     </div>
 
     <div class="col col-right">
+      <div class="slide-img-card">
+        <img src="img_s4.webp" alt="推動承諾 — 行動時程" loading="lazy">
+      </div>
       <div class="card">
         <h3>下一步行動（訓後 30 天）</h3>
         <ul>
@@ -1471,6 +1534,10 @@ body {
     <!-- 右欄 -->
     <div class="col col-right">
 
+      <div class="slide-img-card">
+        <img src="img_s5.webp" alt="附錄A — 落地規劃示意" loading="lazy">
+      </div>
+
       <div class="card" style="background:rgba(126,207,255,0.06);border-color:rgba(126,207,255,0.22);">
         <h3>產品 POC — Claude Code 快速開發</h3>
         <ul>
@@ -1550,6 +1617,9 @@ body {
     </div>
 
     <div class="col col-half">
+      <div class="slide-img-card">
+        <img src="img_s6.webp" alt="附錄B — TCO 費用試算" loading="lazy">
+      </div>
       <div class="card" style="background:rgba(255,200,70,0.06);border-color:rgba(255,200,70,0.22);">
         <h3>總費用試算（TCO）</h3>
         <table class="data-table">
@@ -1700,6 +1770,10 @@ body {
     <!-- 右欄 -->
     <div class="col col-half">
 
+      <div class="slide-img-card">
+        <img src="img_s7.webp" alt="附錄C — 統計數據視覺化" loading="lazy">
+      </div>
+
       <div class="card">
         <h3>年度會議場次（民國 110–115 年）</h3>
         <table class="data-table">
@@ -1828,6 +1902,10 @@ body {
 
     <!-- 右欄：功能清單 + POC 意義 + 開發者說明 -->
     <div class="col col-right">
+
+      <div class="slide-img-card">
+        <img src="img_s8.webp" alt="附錄D — LINE Bot 介面示意" loading="lazy">
+      </div>
 
       <div class="card">
         <h3><span class="ms ms-sm">check_circle</span> 已上線功能</h3>
