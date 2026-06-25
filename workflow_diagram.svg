@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="670" viewBox="0 0 1200 670">
+<title>AI Agent 都市設計審議助理系統 — 工作流程圖</title>
+
+<defs>
+  <marker id="arr" markerWidth="8" markerHeight="6" refX="7.5" refY="3" orient="auto">
+    <polygon points="0,0.5 8,3 0,5.5" fill="#5ba8d0"/>
+  </marker>
+  <pattern id="dotpat" width="22" height="22" patternUnits="userSpaceOnUse">
+    <circle cx="11" cy="11" r="0.85" fill="rgba(126,207,255,0.07)"/>
+  </pattern>
+  <filter id="glow">
+    <feGaussianBlur stdDeviation="2.5" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+
+<!-- ─── Background ─── -->
+<rect width="1200" height="670" fill="#080f1e"/>
+<rect width="1200" height="670" fill="url(#dotpat)"/>
+
+<!-- ─── Title bar ─── -->
+<rect width="1200" height="78" fill="rgba(8,16,34,0.97)"/>
+<rect x="0" y="77" width="1200" height="1" fill="rgba(126,207,255,0.22)"/>
+<!-- Blue accent line -->
+<rect x="32" y="0" width="4" height="78" fill="#7ecfff"/>
+<text x="600" y="38" text-anchor="middle"
+      font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif"
+      fill="#e8eef4" font-size="20" font-weight="700" letter-spacing="1">AI Agent 都市設計審議助理系統 — 工作流程圖</text>
+<text x="600" y="62" text-anchor="middle"
+      font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif"
+      fill="#4d8abf" font-size="11.5">依高雄市都市設計審議作業流程圖繪製，標示 AI Agent 自動介入節點</text>
+
+<!-- ─── Flow arrows (y = mid of stage boxes = 88+90/2 = 133) ─── -->
+<line x1="282" y1="133" x2="320" y2="133" stroke="#5ba8d0" stroke-width="2.5" marker-end="url(#arr)"/>
+<line x1="578" y1="133" x2="616" y2="133" stroke="#5ba8d0" stroke-width="2.5" marker-end="url(#arr)"/>
+<line x1="874" y1="133" x2="912" y2="133" stroke="#5ba8d0" stroke-width="2.5" marker-end="url(#arr)"/>
+
+<!-- ══════════════════════════════════════════════════════
+     STAGE COLUMNS  ·  x = 32 | 328 | 624 | 920  w = 248
+     ══════════════════════════════════════════════════════ -->
+
+<!-- ─── STAGE 1 : 掛件 × 送件  (x=32) ─── -->
+<rect x="32" y="88" width="248" height="90" rx="10" fill="#0d1b30" stroke="rgba(126,207,255,0.3)" stroke-width="1.5"/>
+<rect x="32" y="88" width="248" height="4"  rx="2"  fill="#7ecfff"/>
+<rect x="44" y="102" width="50" height="16" rx="4"  fill="rgba(126,207,255,0.12)"/>
+<text x="69"  y="113" text-anchor="middle" font-family="'Segoe UI',sans-serif" fill="#7ecfff" font-size="9" font-weight="700" letter-spacing="1.5">STAGE 1</text>
+<text x="105" y="133" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#e8eef4" font-size="16" font-weight="700">掛件 × 送件</text>
+<text x="44"  y="165" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="10.5">線上申請 → 上傳報告書 → 繳費受理</text>
+
+<text x="156" y="201" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="rgba(126,207,255,0.38)" font-size="9.5" letter-spacing="2.5">流程步驟</text>
+<line x1="44" y1="207" x2="268" y2="207" stroke="rgba(126,207,255,0.1)" stroke-width="1"/>
+<circle cx="52" cy="223" r="2.5" fill="rgba(126,207,255,0.35)"/>
+<text x="62" y="227" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="11">帳號登入，線上登打案件資料</text>
+<rect  x="44" y="235" width="216" height="20" rx="3" fill="rgba(126,207,255,0.07)"/>
+<circle cx="52" cy="245" r="2.5" fill="#7ecfff"/>
+<text x="62" y="249" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#e8eef4" font-size="11" font-weight="600">上傳附件（報告書 PDF）</text>
+<circle cx="52" cy="263" r="2.5" fill="rgba(126,207,255,0.35)"/>
+<text x="62" y="267" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="11">產製系統檢核碼，置入報告書</text>
+<circle cx="52" cy="281" r="2.5" fill="rgba(126,207,255,0.35)"/>
+<text x="62" y="285" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="11">繳費完成後正式受理</text>
+
+<rect x="32"  y="305" width="248" height="200" rx="8" fill="#050f20" stroke="rgba(126,207,255,0.22)" stroke-width="1.5"/>
+<rect x="32"  y="305" width="248" height="3"   rx="2" fill="#7ecfff"/>
+<circle cx="52"  cy="324" r="9" fill="rgba(126,207,255,0.1)" stroke="rgba(126,207,255,0.3)" stroke-width="1"/>
+<text x="52" y="328" text-anchor="middle" font-family="sans-serif" fill="#7ecfff" font-size="8.5" font-weight="700">AI</text>
+<text x="68" y="328" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7ecfff" font-size="10.5" font-weight="700">Agent 介入：送件前自動檢核</text>
+<line x1="44" y1="338" x2="268" y2="338" stroke="rgba(126,207,255,0.12)" stroke-width="1"/>
+<rect x="40"  y="344" width="232" height="37" rx="5" fill="rgba(126,207,255,0.05)" stroke="rgba(126,207,255,0.15)" stroke-width="1"/>
+<text x="52"  y="357" font-family="monospace,'Courier New',sans-serif" fill="#7ecfff" font-size="11" font-weight="700">ocr_parse</text>
+<text x="52"  y="372" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7dda9e" font-size="10">↳ PDF → 結構化章節</text>
+<rect x="40"  y="388" width="232" height="37" rx="5" fill="rgba(126,207,255,0.05)" stroke="rgba(126,207,255,0.15)" stroke-width="1"/>
+<text x="52"  y="401" font-family="monospace,'Courier New',sans-serif" fill="#7ecfff" font-size="11" font-weight="700">format_check</text>
+<text x="52"  y="416" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7dda9e" font-size="10">↳ 缺失項目清單</text>
+<line x1="44" y1="435" x2="268" y2="435" stroke="rgba(126,207,255,0.1)" stroke-width="1"/>
+<text x="44" y="449" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7dda9e" font-size="10" font-weight="700">✓ 輸出</text>
+<text x="44" y="463" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#9ec8dd" font-size="10">格式缺失報告，申請人自助</text>
+<text x="44" y="476" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#9ec8dd" font-size="10">修正，減少退件</text>
+
+<!-- ─── STAGE 2 : 書圖審查  (x=328) ─── -->
+<rect x="328" y="88" width="248" height="90" rx="10" fill="#0d1b30" stroke="rgba(126,207,255,0.3)" stroke-width="1.5"/>
+<rect x="328" y="88" width="248" height="4"  rx="2"  fill="#7ecfff"/>
+<rect x="340" y="102" width="50" height="16" rx="4"  fill="rgba(126,207,255,0.12)"/>
+<text x="365"  y="113" text-anchor="middle" font-family="'Segoe UI',sans-serif" fill="#7ecfff" font-size="9" font-weight="700" letter-spacing="1.5">STAGE 2</text>
+<text x="401"  y="133" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#e8eef4" font-size="16" font-weight="700">書圖審查</text>
+<text x="340"  y="165" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="10.5">逐頁核對格式 → 補正意見撰寫 → 排會</text>
+
+<text x="452" y="201" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="rgba(126,207,255,0.38)" font-size="9.5" letter-spacing="2.5">流程步驟</text>
+<line x1="340" y1="207" x2="564" y2="207" stroke="rgba(126,207,255,0.1)" stroke-width="1"/>
+<rect  x="340" y="214" width="216" height="20" rx="3" fill="rgba(126,207,255,0.07)"/>
+<circle cx="348" cy="224" r="2.5" fill="#7ecfff"/>
+<text x="358" y="228" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#e8eef4" font-size="11" font-weight="600">承辦人逐頁核對格式符合性</text>
+<rect  x="340" y="236" width="216" height="20" rx="3" fill="rgba(126,207,255,0.07)"/>
+<circle cx="348" cy="246" r="2.5" fill="#7ecfff"/>
+<text x="358" y="250" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#e8eef4" font-size="11" font-weight="600">撰寫補正意見，通知申請人</text>
+<circle cx="348" cy="264" r="2.5" fill="rgba(126,207,255,0.35)"/>
+<text x="358" y="268" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="11">申請人依意見補正（平均 2–4 輪）</text>
+<circle cx="348" cy="282" r="2.5" fill="rgba(126,207,255,0.35)"/>
+<text x="358" y="286" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="11">符合規定後簽准排會</text>
+
+<rect x="328" y="305" width="248" height="200" rx="8" fill="#050f20" stroke="rgba(126,207,255,0.22)" stroke-width="1.5"/>
+<rect x="328" y="305" width="248" height="3"   rx="2" fill="#7ecfff"/>
+<circle cx="348" cy="324" r="9" fill="rgba(126,207,255,0.1)" stroke="rgba(126,207,255,0.3)" stroke-width="1"/>
+<text x="348" y="328" text-anchor="middle" font-family="sans-serif" fill="#7ecfff" font-size="8.5" font-weight="700">AI</text>
+<text x="364" y="328" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7ecfff" font-size="10.5" font-weight="700">Agent 介入：補正意見草稿生成</text>
+<line x1="340" y1="338" x2="564" y2="338" stroke="rgba(126,207,255,0.12)" stroke-width="1"/>
+<rect x="336" y="344" width="232" height="37" rx="5" fill="rgba(126,207,255,0.05)" stroke="rgba(126,207,255,0.15)" stroke-width="1"/>
+<text x="348" y="357" font-family="monospace,'Courier New',sans-serif" fill="#7ecfff" font-size="11" font-weight="700">rag_query</text>
+<text x="348" y="372" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7dda9e" font-size="10">↳ 歷史補正意見檢索</text>
+<rect x="336" y="388" width="232" height="37" rx="5" fill="rgba(126,207,255,0.05)" stroke="rgba(126,207,255,0.15)" stroke-width="1"/>
+<text x="348" y="401" font-family="monospace,'Courier New',sans-serif" fill="#7ecfff" font-size="11" font-weight="700">llm_draft</text>
+<text x="348" y="416" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7dda9e" font-size="10">↳ 意見草稿生成</text>
+<line x1="340" y1="435" x2="564" y2="435" stroke="rgba(126,207,255,0.1)" stroke-width="1"/>
+<text x="340" y="449" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7dda9e" font-size="10" font-weight="700">✓ 輸出</text>
+<text x="340" y="463" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#9ec8dd" font-size="10">逐項補正意見草稿，</text>
+<text x="340" y="476" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#9ec8dd" font-size="10">承辦人審閱後發出</text>
+
+<!-- ─── STAGE 3 : 審查會議  (x=624) ─── -->
+<rect x="624" y="88" width="248" height="90" rx="10" fill="#0d1b30" stroke="rgba(126,207,255,0.3)" stroke-width="1.5"/>
+<rect x="624" y="88" width="248" height="4"  rx="2"  fill="#7ecfff"/>
+<rect x="636" y="102" width="50" height="16" rx="4"  fill="rgba(126,207,255,0.12)"/>
+<text x="661"  y="113" text-anchor="middle" font-family="'Segoe UI',sans-serif" fill="#7ecfff" font-size="9" font-weight="700" letter-spacing="1.5">STAGE 3</text>
+<text x="697"  y="133" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#e8eef4" font-size="16" font-weight="700">審查會議</text>
+<text x="636"  y="165" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="10.5">通知開會 → 委員審查 → 作成決議</text>
+
+<text x="748" y="201" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="rgba(126,207,255,0.38)" font-size="9.5" letter-spacing="2.5">流程步驟</text>
+<line x1="636" y1="207" x2="860" y2="207" stroke="rgba(126,207,255,0.1)" stroke-width="1"/>
+<rect  x="636" y="214" width="216" height="20" rx="3" fill="rgba(126,207,255,0.07)"/>
+<circle cx="644" cy="224" r="2.5" fill="#7ecfff"/>
+<text x="654" y="228" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#e8eef4" font-size="11" font-weight="600">機關通知開會時間</text>
+<rect  x="636" y="236" width="216" height="20" rx="3" fill="rgba(126,207,255,0.07)"/>
+<circle cx="644" cy="246" r="2.5" fill="#7ecfff"/>
+<text x="654" y="250" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#e8eef4" font-size="11" font-weight="600">上傳報告書與簡報書件</text>
+<circle cx="644" cy="264" r="2.5" fill="rgba(126,207,255,0.35)"/>
+<text x="654" y="268" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="11">委員審查會議，作成決議</text>
+<circle cx="644" cy="282" r="2.5" fill="rgba(126,207,255,0.35)"/>
+<text x="654" y="286" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="11">未通過 → 依決議修正後續提</text>
+
+<rect x="624" y="305" width="248" height="200" rx="8" fill="#050f20" stroke="rgba(126,207,255,0.22)" stroke-width="1.5"/>
+<rect x="624" y="305" width="248" height="3"   rx="2" fill="#7ecfff"/>
+<circle cx="644" cy="324" r="9" fill="rgba(126,207,255,0.1)" stroke="rgba(126,207,255,0.3)" stroke-width="1"/>
+<text x="644" y="328" text-anchor="middle" font-family="sans-serif" fill="#7ecfff" font-size="8.5" font-weight="700">AI</text>
+<text x="660" y="328" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7ecfff" font-size="10.5" font-weight="700">Agent 介入：會議摘要 × 逐字稿</text>
+<line x1="636" y1="338" x2="860" y2="338" stroke="rgba(126,207,255,0.12)" stroke-width="1"/>
+<rect x="632" y="344" width="232" height="37" rx="5" fill="rgba(126,207,255,0.05)" stroke="rgba(126,207,255,0.15)" stroke-width="1"/>
+<text x="644" y="357" font-family="monospace,'Courier New',sans-serif" fill="#7ecfff" font-size="11" font-weight="700">speech_to_text</text>
+<text x="644" y="372" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7dda9e" font-size="10">↳ 會議逐字稿</text>
+<rect x="632" y="388" width="232" height="37" rx="5" fill="rgba(126,207,255,0.05)" stroke="rgba(126,207,255,0.15)" stroke-width="1"/>
+<text x="644" y="401" font-family="monospace,'Courier New',sans-serif" fill="#7ecfff" font-size="11" font-weight="700">llm_summary</text>
+<text x="644" y="416" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7dda9e" font-size="10">↳ 決議要點摘要</text>
+<line x1="636" y1="435" x2="860" y2="435" stroke="rgba(126,207,255,0.1)" stroke-width="1"/>
+<text x="636" y="449" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7dda9e" font-size="10" font-weight="700">✓ 輸出</text>
+<text x="636" y="463" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#9ec8dd" font-size="10">會議紀錄草稿 ＋</text>
+<text x="636" y="476" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#9ec8dd" font-size="10">案件重點摘要</text>
+
+<!-- ─── STAGE 4 : 核定作業  (x=920) ─── -->
+<rect x="920" y="88" width="248" height="90" rx="10" fill="#0d1b30" stroke="rgba(126,207,255,0.3)" stroke-width="1.5"/>
+<rect x="920" y="88" width="248" height="4"  rx="2"  fill="#7ecfff"/>
+<rect x="932" y="102" width="50" height="16" rx="4"  fill="rgba(126,207,255,0.12)"/>
+<text x="957"  y="113" text-anchor="middle" font-family="'Segoe UI',sans-serif" fill="#7ecfff" font-size="9" font-weight="700" letter-spacing="1.5">STAGE 4</text>
+<text x="993"  y="133" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#e8eef4" font-size="16" font-weight="700">核定作業</text>
+<text x="932"  y="165" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="10.5">差異比對 → 套印 → 核定函發文</text>
+
+<text x="1044" y="201" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="rgba(126,207,255,0.38)" font-size="9.5" letter-spacing="2.5">流程步驟</text>
+<line x1="932" y1="207" x2="1156" y2="207" stroke="rgba(126,207,255,0.1)" stroke-width="1"/>
+<rect  x="932" y="214" width="216" height="20" rx="3" fill="rgba(126,207,255,0.07)"/>
+<circle cx="940" cy="224" r="2.5" fill="#7ecfff"/>
+<text x="950" y="228" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#e8eef4" font-size="11" font-weight="600">比對核定版與審查版差異</text>
+<circle cx="940" cy="246" r="2.5" fill="rgba(126,207,255,0.35)"/>
+<text x="950" y="250" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="11">套印浮水印、騎縫章</text>
+<circle cx="940" cy="264" r="2.5" fill="rgba(126,207,255,0.35)"/>
+<text x="950" y="268" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="11">上傳核定本至服務平台</text>
+<circle cx="940" cy="282" r="2.5" fill="rgba(126,207,255,0.35)"/>
+<text x="950" y="286" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="11">開放申請人下載核定函</text>
+
+<rect x="920" y="305" width="248" height="200" rx="8" fill="#050f20" stroke="rgba(126,207,255,0.22)" stroke-width="1.5"/>
+<rect x="920" y="305" width="248" height="3"   rx="2" fill="#7ecfff"/>
+<circle cx="940" cy="324" r="9" fill="rgba(126,207,255,0.1)" stroke="rgba(126,207,255,0.3)" stroke-width="1"/>
+<text x="940" y="328" text-anchor="middle" font-family="sans-serif" fill="#7ecfff" font-size="8.5" font-weight="700">AI</text>
+<text x="956" y="328" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7ecfff" font-size="10.5" font-weight="700">Agent 介入：版本差異追蹤</text>
+<line x1="932" y1="338" x2="1156" y2="338" stroke="rgba(126,207,255,0.12)" stroke-width="1"/>
+<rect x="928" y="344" width="232" height="37" rx="5" fill="rgba(126,207,255,0.05)" stroke="rgba(126,207,255,0.15)" stroke-width="1"/>
+<text x="940" y="357" font-family="monospace,'Courier New',sans-serif" fill="#7ecfff" font-size="11" font-weight="700">diff_engine</text>
+<text x="940" y="372" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7dda9e" font-size="10">↳ 版本差異標記</text>
+<rect x="928" y="388" width="232" height="37" rx="5" fill="rgba(126,207,255,0.05)" stroke="rgba(126,207,255,0.15)" stroke-width="1"/>
+<text x="940" y="401" font-family="monospace,'Courier New',sans-serif" fill="#7ecfff" font-size="11" font-weight="700">llm_verify</text>
+<text x="940" y="416" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7dda9e" font-size="10">↳ 決議回應確認</text>
+<line x1="932" y1="435" x2="1156" y2="435" stroke="rgba(126,207,255,0.1)" stroke-width="1"/>
+<text x="932" y="449" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7dda9e" font-size="10" font-weight="700">✓ 輸出</text>
+<text x="932" y="463" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#9ec8dd" font-size="10">補正對照表，確認申請人</text>
+<text x="932" y="476" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#9ec8dd" font-size="10">是否依決議修正</text>
+
+<!-- ═══════════════════════════════════════════════
+     STATS BAR  (y=524, height=76)
+     4 sections × 284px wide, x=32 to x=1168
+     centers: 174 | 458 | 742 | 1026
+     separators: x=316 | 600 | 884
+     ═══════════════════════════════════════════════ -->
+<rect x="32" y="524" width="1136" height="76" rx="10" fill="rgba(13,27,48,0.75)" stroke="rgba(126,207,255,0.14)" stroke-width="1"/>
+<line x1="316" y1="538" x2="316" y2="586" stroke="rgba(126,207,255,0.14)" stroke-width="1"/>
+<line x1="600" y1="538" x2="600" y2="586" stroke="rgba(126,207,255,0.14)" stroke-width="1"/>
+<line x1="884" y1="538" x2="884" y2="586" stroke="rgba(126,207,255,0.14)" stroke-width="1"/>
+
+<text x="174"  y="560" text-anchor="middle" font-family="'Segoe UI','SF Pro Display',sans-serif" fill="#ff6b6b" font-size="22" font-weight="700">~200</text>
+<text x="174"  y="576" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="10">人日 / 年（現況年耗損）</text>
+
+<text x="458"  y="560" text-anchor="middle" font-family="'Segoe UI','SF Pro Display',sans-serif" fill="#7ecfff" font-size="22" font-weight="700">4 節點</text>
+<text x="458"  y="576" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="10">AI Agent 自動介入</text>
+
+<text x="742"  y="560" text-anchor="middle" font-family="'Segoe UI','SF Pro Display',sans-serif" fill="#7dda9e" font-size="22" font-weight="700">≥ 30%</text>
+<text x="742"  y="576" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="10">目標複查工時縮減（POC 驗證）</text>
+
+<text x="1026" y="560" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#f5c842" font-size="22" font-weight="700">不改</text>
+<text x="1026" y="576" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="#7aa8cc" font-size="10">委員審查機制（人工最終核定）</text>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════════ -->
+<line x1="32" y1="614" x2="1168" y2="614" stroke="rgba(126,207,255,0.1)" stroke-width="1"/>
+<text x="600" y="633" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="rgba(126,207,255,0.4)" font-size="10">高雄市政府都市發展局 都市設計科 · 115 年度 AI 推動實務種子人才研習班（第二期）· 邱毓權</text>
+<text x="600" y="651" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif" fill="rgba(126,207,255,0.25)" font-size="9.5">■ 亮色步驟 = AI Agent 主要介入點　｜　↳ = 工具輸出結果　｜　✓ = 交付物</text>
+
+</svg>
