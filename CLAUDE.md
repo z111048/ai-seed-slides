@@ -12,20 +12,37 @@ The presentation topic is: **AI Agent 都市設計審議助理系統** — an AI
 
 | File | Purpose |
 |------|---------|
-| `115 年度 AI 推動實務種子人才研習班_個人簡報_Prompt.txt` | Original prompt used to generate the slide content, including the scoring rubric and brief structure |
-| `115AI研習班簡報_NotebookLM素材.txt` | Full plain-text version of the 5-slide presentation + appendix, intended as NotebookLM input. Contains all quantitative data, timeline, budget estimates, and design prompt for each slide. |
-| `slides_115AI研習班個人簡報.html` | Rendered HTML presentation (the deliverable) |
-| `slides_115AI研習班個人簡報.pdf` | PDF export of the presentation |
+| `slides_115AI研習班個人簡報.html` | Desktop slide deck (10 slides, keyboard/dot navigation) |
+| `slides_115AI研習班個人簡報.pdf` | PDF export (9 pages, animation slide excluded) |
+| `index.html` | Mobile RWD version (scroll reading, IntersectionObserver animations) |
+| `slide_agent_workflow.html` | Standalone animated workflow page (also embedded in desktop slide 4) |
+| `workflow_diagram.svg` | Static workflow diagram — vector, 1200×670 |
+| `workflow_diagram.png` | Static workflow diagram — raster PNG, 1200×670 |
+| `115AI研習班簡報_NotebookLM素材.txt` | Full plain-text version for NotebookLM input |
+| `115 年度 AI 推動實務種子人才研習班_個人簡報_Prompt.txt` | Original generation prompt + scoring rubric |
 | `大頭貼.jpg` | Presenter's profile photo |
 
 ## Presentation Structure
 
-- **封面**: Title slide
-- **P1 — 痛點現場**: Problem scope — 7 staff, ~100 cases/year, ~200 person-days/year lost to format review
-- **P2 — AI 解方**: 5-technology stack (LLM, OCR, Vision, Speech, RAG) with phased rollout strategy
-- **P3 — 短期可驗證**: 90-day POC plan with KPIs (≥30% review time reduction, ≥85% accuracy)
-- **P4 — 推動承諾**: Commitments, timeline (2026-07-13 kickoff, 2026-07-25 written approval), budget source (城鄉發展基金)
-- **附錄**: 7-module phased development roadmap (Phase 1–3), POC strategy, full TCO breakdown
+Desktop deck has 10 slides (s0–s9); mobile `index.html` is a single scrollable page with the same sections.
+
+| Slide | ID | Content |
+|-------|----|---------|
+| 封面 | s0 | Title slide |
+| P1 | s1 | 痛點現場 — 7 staff, ~100 cases/year, ~200 person-days/year |
+| P2 | s2 | AI Agent 架構 — tool-chain framing (OCR / RAG / LLM / Speech / Diff) |
+| P2+ | s_workflow | AI Agent 融入都審工作流程（animated, iframe on desktop / native HTML on mobile） |
+| P3 | s3 | 短期可驗證 — 90-day POC, KPIs ≥30% / ≥85% |
+| P4 | s4 | 推動承諾 — timeline, budget (城鄉發展基金) |
+| 附錄 A–D | s5–s8 | Roadmap / TCO / stats / LINE Bot proof-of-concept |
+
+## PDF Generation
+
+Uses Playwright + ImageMagick. Script at scratchpad `gen_pdf.mjs`, run from the directory where `playwright` is installed (`~/.npm/_npx/5e2e484947874241/`). Captures slides s0–s8 (9 slides; s_workflow excluded via `print: display:none`).
+
+```
+node gen_pdf.mjs
+```
 
 ## Scoring Rubric (for content validation)
 

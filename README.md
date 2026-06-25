@@ -71,8 +71,10 @@
 |------|------|
 | `slides_115AI研習班個人簡報.html` | 桌面版投影片（10 張，含動畫頁） |
 | `slides_115AI研習班個人簡報.pdf` | 靜態 PDF 匯出（9 頁，不含動畫頁） |
-| `index.html` | 行動裝置 RWD 版（捲動閱讀） |
+| `index.html` | 行動裝置 RWD 版（捲動閱讀，含滾動觸發動畫） |
 | `slide_agent_workflow.html` | AI Agent 工作流程動畫（獨立頁，亦內嵌於簡報） |
+| `workflow_diagram.svg` | 工作流程圖向量檔（1200×670，可無損縮放） |
+| `workflow_diagram.png` | 工作流程圖點陣圖（1200×670，供文件嵌入） |
 | `img_cover.webp` | AI 生成封面圖（深夜台灣城市 × 數位格柵） |
 | `img_s4.webp` | AI 生成 P4 插圖（政府建築黃金時段） |
 | `115AI研習班簡報_NotebookLM素材.txt` | 全文純文字版（NotebookLM 素材） |
@@ -91,3 +93,10 @@
 - **自動播放**：開啟後約 1 秒自動逐步展開
 - **點擊 / Space**：手動推進下一步
 - **← 鍵**：重新播放
+
+## 工作流程圖（靜態版）
+
+`workflow_diagram.svg` / `workflow_diagram.png` 為獨立的靜態流程圖，涵蓋 4 個審議節點、AI Agent 工具鏈與產出，適合嵌入 Word 文件、簡報或印刷。
+
+- SVG：向量格式，縮放不失真，可在瀏覽器直接開啟
+- PNG：1200×670 點陣圖，直接貼入文件使用
