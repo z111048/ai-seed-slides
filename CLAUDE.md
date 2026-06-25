@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This repository contains presentation materials for the **115 年度 AI 推動實務種子人才研習班（第二期）** — a government AI training workshop. The presenter is 邱毓權 (第五組) from 高雄市政府都市發展局 都市設計科.
 
-The presentation topic is: **AI 輔助都市設計審議報告書檢核系統** — an AI-assisted system to reduce manual review burden in urban design approval workflows.
+The presentation topic is: **AI Agent 都市設計審議助理系統** — an AI Agent that autonomously executes the review workflow to reduce manual burden in urban design approval processes.
 
 ## Files
 

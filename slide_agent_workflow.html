@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent 都審流程動畫</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<style>
+:root {
+  --bg:        #080f1e;
+  --bg2:       #0d1b30;
+  --blue:      #7ecfff;
+  --green:     #7dda9e;
+  --gold:      #f5c842;
+  --red:       #ff6b6b;
+  --muted:     rgba(126,207,255,0.18);
+  --border:    rgba(126,207,255,0.22);
+  --text:      #e8f4ff;
+  --sub:       rgba(232,244,255,0.62);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans TC', sans-serif;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  user-select: none;
+}
+
+.ms {
+  font-family: 'Material Symbols Outlined';
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
+/* ─── Layout ─── */
+.stage {
+  width: 1920px;
+  height: 1080px;
+  display: flex;
+  flex-direction: column;
+  padding: 44px 80px 40px;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Background glow ─── */
+.stage::before {
+  content: '';
+  position: absolute;
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 1200px; height: 600px;
+  background: radial-gradient(ellipse, rgba(126,207,255,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ─── Header ─── */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+.slide-num { font-size: 0.8rem; color: var(--blue); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+.title { font-size: 2rem; font-weight: 700; color: #fff; line-height: 1.2; }
+.title span { color: var(--blue); }
+.subtitle { font-size: 0.95rem; color: var(--sub); margin-top: 6px; }
+.badge-ai {
+  background: rgba(126,207,255,0.12);
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.82rem;
+  color: var(--blue);
+  display: flex; align-items: center; gap: 0.4rem;
+  white-space: nowrap;
+}
+
+/* ─── Workflow ribbon ─── */
+.workflow-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.phase {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  opacity: 0;
+}
+.phase.show { animation: fadeUp 0.5s ease both; }
+
+/* Phase connectors */
+.phase:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 32px;
+  width: 2px;
+  height: 52px;
+  background: var(--border);
+  z-index: 0;
+}
+
+.phase-header {
+  width: 100%;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 12px 12px 0 0;
+  padding: 14px 20px 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  transition: border-color 0.3s, background 0.3s;
+}
+.phase.active .phase-header {
+  border-color: var(--blue);
+  background: rgba(126,207,255,0.08);
+}
+.phase.active .phase-icon { color: var(--blue); }
+
+.phase-icon {
+  font-size: 1.5rem;
+  color: var(--sub);
+  transition: color 0.3s;
+}
+.phase-label {
+  font-size: 0.72rem;
+  color: var(--sub);
+  letter-spacing: 0.04em;
+}
+.phase-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Arrow between phases */
+.arrow-connector {
+  display: flex;
+  align-items: center;
+  padding: 0 0px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  align-self: flex-start;
+  padding-top: 28px;
+  flex-shrink: 0;
+  width: 56px;
+  justify-content: center;
+}
+.arrow-connector.show { opacity: 1; }
+.arrow-connector .ms { font-size: 2rem; color: var(--blue); }
+
+/* Sub-steps */
+.phase-steps {
+  width: 100%;
+  background: rgba(13,27,48,0.7);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-radius: 0 0 0 0;
+  padding: 10px 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--sub);
+  line-height: 1.45;
+  padding: 2px 0;
+}
+.step-item .ms { font-size: 0.9rem; color: rgba(126,207,255,0.45); flex-shrink: 0; margin-top: 1px; }
+.step-item.highlight { color: var(--text); }
+.step-item.highlight .ms { color: var(--blue); }
+
+/* ─── Agent layer ─── */
+.agent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  position: relative;
+  margin-top: 0;
+}
+
+.agent-slot {
+  flex: 1;
+  padding: 0 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.agent-slot-spacer {
+  width: 56px;
+  flex-shrink: 0;
+}
+
+.agent-card {
+  background: rgba(5,22,44,0.9);
+  border: 1px solid rgba(126,207,255,0.28);
+  border-radius: 10px;
+  padding: 12px 14px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  position: relative;
+  overflow: hidden;
+}
+.agent-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.agent-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+.agent-card.show::before { opacity: 1; }
+
+.agent-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+.agent-title .ms { font-size: 1.1rem; }
+.agent-robot {
+  width: 22px; height: 22px;
+  background: var(--blue);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.agent-robot .ms { font-size: 0.95rem; color: #040d1a; }
+
+/* Tool call chips */
+.tool-calls {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.tool-call {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(126,207,255,0.07);
+  border: 1px solid rgba(126,207,255,0.15);
+  border-radius: 6px;
+  padding: 5px 9px;
+  font-size: 0.72rem;
+  color: var(--text);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.tool-call.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+.tool-call .ms { font-size: 0.9rem; color: var(--blue); flex-shrink: 0; }
+.tool-call .tc-name { color: var(--blue); font-weight: 600; white-space: nowrap; }
+.tool-call .tc-arrow { color: var(--sub); margin: 0 2px; }
+.tool-call .tc-result { color: var(--green); }
+
+/* Output badge */
+.output-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(125,218,158,0.1);
+  border: 1px solid rgba(125,218,158,0.28);
+  border-radius: 6px;
+  padding: 5px 9px;
+  font-size: 0.72rem;
+  color: var(--green);
+  margin-top: 6px;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.3s ease 0.6s, transform 0.3s ease 0.6s;
+}
+.output-badge.show { opacity: 1; transform: translateX(0); }
+.output-badge .ms { font-size: 0.9rem; }
+
+/* ─── Bottom stats ─── */
+.stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  margin-top: auto;
+  padding-top: 8px;
+  opacity: 0;
+  animation: fadeUp 0.5s ease both;
+}
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(126,207,255,0.06);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+.stat-num { font-size: 1.4rem; font-weight: 700; color: var(--blue); }
+.stat-label { font-size: 0.75rem; color: var(--sub); }
+.stat-divider { width: 1px; height: 28px; background: var(--border); }
+
+/* ─── Connection lines (vertical, from phase to agent) ─── */
+.connect-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: linear-gradient(180deg, var(--blue), rgba(126,207,255,0.2));
+  height: 0;
+  transition: height 0.35s ease;
+  z-index: 1;
+  top: 100%;
+}
+.connect-line.show { height: 24px; }
+
+/* ─── Pulse dot on active phase ─── */
+.pulse-dot {
+  position: absolute;
+  top: -6px; right: -6px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--blue);
+  opacity: 0;
+  animation: none;
+}
+.phase.active .pulse-dot { opacity: 1; animation: pulse 1.5s ease-in-out infinite; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(126,207,255,0.5); }
+  50% { transform: scale(1.2); opacity: 0.9; box-shadow: 0 0 0 6px rgba(126,207,255,0); }
+}
+
+/* ─── Keyframes ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Data flow animation ─── */
+.data-packet {
+  position: absolute;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 8px var(--blue);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ─── Step counter ─── */
+.step-counter {
+  position: absolute;
+  bottom: 36px;
+  right: 80px;
+  display: flex;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.step-pip {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(126,207,255,0.2);
+  border: 1px solid rgba(126,207,255,0.3);
+  transition: background 0.3s, transform 0.3s;
+}
+.step-pip.done { background: var(--blue); transform: scale(1.2); }
+.step-pip.active { background: var(--blue); box-shadow: 0 0 6px var(--blue); }
+
+/* ─── Playback hint ─── */
+.play-hint {
+  position: absolute;
+  bottom: 36px;
+  left: 80px;
+  font-size: 0.72rem;
+  color: rgba(126,207,255,0.4);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.play-hint .ms { font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<div class="stage">
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="slide-num">02 / 04 · 解方可行性</div>
+      <div class="title">AI <span>Agent</span> 融入都審工作流程</div>
+      <div class="subtitle">依據高雄市都市設計審議作業流程圖，標示 Agent 自動介入的節點</div>
+    </div>
+    <div class="badge-ai">
+      <span class="ms" style="font-size:1.1rem">smart_toy</span>
+      Agent 自動執行 · 人工專注實質審查
+    </div>
+  </div>
+
+  <!-- Workflow ribbon -->
+  <div class="workflow-row" id="workflowRow">
+
+    <!-- Phase 1 -->
+    <div class="phase" id="ph1">
+      <div class="pulse-dot"></div>
+      <div class="phase-header">
+        <span class="ms phase-icon">inbox</span>
+        <div>
+          <div class="phase-label">STAGE 1</div>
+          <div class="phase-title">掛件 × 送件</div>
+        </div>
+      </div>
+      <div class="phase-steps">
+        <div class="step-item"><span class="ms">login</span>帳號登入，線上登打案件資料</div>
+        <div class="step-item highlight"><span class="ms">upload_file</span>上傳附件（報告書 PDF）</div>
+        <div class="step-item"><span class="ms">qr_code</span>產製系統檢核碼，置入報告書</div>
+        <div class="step-item"><span class="ms">payments</span>繳費完成後正式受理</div>
+        <div class="step-item"><span class="ms">business</span>至都發局現場送件</div>
+      </div>
+      <div class="connect-line" id="cl1"></div>
+    </div>
+
+    <div class="arrow-connector" id="arr1"><span class="ms">arrow_forward</span></div>
+
+    <!-- Phase 2 -->
+    <div class="phase" id="ph2">
+      <div class="pulse-dot"></div>
+      <div class="phase-header">
+        <span class="ms phase-icon">fact_check</span>
+        <div>
+          <div class="phase-label">STAGE 2</div>
+          <div class="phase-title">書圖審查</div>
+        </div>
+      </div>
+      <div class="phase-steps">
+        <div class="step-item highlight"><span class="ms">manage_search</span>承辦人逐頁核對格式符合性</div>
+        <div class="step-item highlight"><span class="ms">edit_note</span>撰寫補正意見，通知申請人</div>
+        <div class="step-item"><span class="ms">loop</span>申請人依意見補正（平均 2–4 輪）</div>
+        <div class="step-item"><span class="ms">event_available</span>符合規定後簽准排會</div>
+      </div>
+      <div class="connect-line" id="cl2"></div>
+    </div>
+
+    <div class="arrow-connector" id="arr2"><span class="ms">arrow_forward</span></div>
+
+    <!-- Phase 3 -->
+    <div class="phase" id="ph3">
+      <div class="pulse-dot"></div>
+      <div class="phase-header">
+        <span class="ms phase-icon">groups</span>
+        <div>
+          <div class="phase-label">STAGE 3</div>
+          <div class="phase-title">審查會議</div>
+        </div>
+      </div>
+      <div class="phase-steps">
+        <div class="step-item highlight"><span class="ms">calendar_month</span>機關通知開會時間</div>
+        <div class="step-item highlight"><span class="ms">present_to_all</span>上傳報告書與簡報書件</div>
+        <div class="step-item"><span class="ms">gavel</span>委員審查會議，作成決議</div>
+        <div class="step-item"><span class="ms">refresh</span>未通過 → 依決議修正後續提</div>
+      </div>
+      <div class="connect-line" id="cl3"></div>
+    </div>
+
+    <div class="arrow-connector" id="arr3"><span class="ms">arrow_forward</span></div>
+
+    <!-- Phase 4 -->
+    <div class="phase" id="ph4">
+      <div class="pulse-dot"></div>
+      <div class="phase-header">
+        <span class="ms phase-icon">verified</span>
+        <div>
+          <div class="phase-label">STAGE 4</div>
+          <div class="phase-title">核定作業</div>
+        </div>
+      </div>
+      <div class="phase-steps">
+        <div class="step-item highlight"><span class="ms">compare_arrows</span>比對核定版與審查版差異</div>
+        <div class="step-item"><span class="ms">watermark</span>套印浮水印、騎縫章</div>
+        <div class="step-item"><span class="ms">cloud_upload</span>上傳核定本至服務平台</div>
+        <div class="step-item"><span class="ms">download</span>開放申請人下載核定函</div>
+      </div>
+      <div class="connect-line" id="cl4"></div>
+    </div>
+
+  </div>
+
+  <!-- Agent Cards Row -->
+  <div class="agent-row" id="agentRow">
+
+    <!-- Agent 1 -->
+    <div class="agent-slot">
+      <div class="agent-card" id="ag1">
+        <div class="agent-title">
+          <div class="agent-robot"><span class="ms">smart_toy</span></div>
+          Agent 介入：送件前自動檢核
+        </div>
+        <div class="tool-calls">
+          <div class="tool-call" id="tc1a">
+            <span class="ms">document_scanner</span>
+            <span class="tc-name">tool: ocr_parse</span>
+            <span class="tc-arrow">→</span>
+            <span class="tc-result">PDF → 結構化章節</span>
+          </div>
+          <div class="tool-call" id="tc1b">
+            <span class="ms">rule</span>
+            <span class="tc-name">tool: format_check</span>
+            <span class="tc-arrow">→</span>
+            <span class="tc-result">缺失項目清單</span>
+          </div>
+        </div>
+        <div class="output-badge" id="ob1">
+          <span class="ms">check_circle</span>
+          輸出：格式缺失報告（申請人自助修正，減少退件）
+        </div>
+      </div>
+    </div>
+
+    <div class="agent-slot-spacer"></div>
+
+    <!-- Agent 2 -->
+    <div class="agent-slot">
+      <div class="agent-card" id="ag2">
+        <div class="agent-title">
+          <div class="agent-robot"><span class="ms">smart_toy</span></div>
+          Agent 介入：補正意見草稿生成
+        </div>
+        <div class="tool-calls">
+          <div class="tool-call" id="tc2a">
+            <span class="ms">database</span>
+            <span class="tc-name">tool: rag_query</span>
+            <span class="tc-arrow">→</span>
+            <span class="tc-result">歷史補正意見檢索</span>
+          </div>
+          <div class="tool-call" id="tc2b">
+            <span class="ms">psychology</span>
+            <span class="tc-name">tool: llm_draft</span>
+            <span class="tc-arrow">→</span>
+            <span class="tc-result">意見草稿生成</span>
+          </div>
+        </div>
+        <div class="output-badge" id="ob2">
+          <span class="ms">check_circle</span>
+          輸出：逐項補正意見草稿（承辦人審閱後發出）
+        </div>
+      </div>
+    </div>
+
+    <div class="agent-slot-spacer"></div>
+
+    <!-- Agent 3 -->
+    <div class="agent-slot">
+      <div class="agent-card" id="ag3">
+        <div class="agent-title">
+          <div class="agent-robot"><span class="ms">smart_toy</span></div>
+          Agent 介入：會議摘要 × 逐字稿
+        </div>
+        <div class="tool-calls">
+          <div class="tool-call" id="tc3a">
+            <span class="ms">mic</span>
+            <span class="tc-name">tool: speech_to_text</span>
+            <span class="tc-arrow">→</span>
+            <span class="tc-result">會議逐字稿</span>
+          </div>
+          <div class="tool-call" id="tc3b">
+            <span class="ms">summarize</span>
+            <span class="tc-name">tool: llm_summary</span>
+            <span class="tc-arrow">→</span>
+            <span class="tc-result">決議要點摘要</span>
+          </div>
+        </div>
+        <div class="output-badge" id="ob3">
+          <span class="ms">check_circle</span>
+          輸出：會議紀錄草稿 + 案件重點摘要
+        </div>
+      </div>
+    </div>
+
+    <div class="agent-slot-spacer"></div>
+
+    <!-- Agent 4 -->
+    <div class="agent-slot">
+      <div class="agent-card" id="ag4">
+        <div class="agent-title">
+          <div class="agent-robot"><span class="ms">smart_toy</span></div>
+          Agent 介入：版本差異追蹤
+        </div>
+        <div class="tool-calls">
+          <div class="tool-call" id="tc4a">
+            <span class="ms">compare_arrows</span>
+            <span class="tc-name">tool: diff_engine</span>
+            <span class="tc-arrow">→</span>
+            <span class="tc-result">版本差異標記</span>
+          </div>
+          <div class="tool-call" id="tc4b">
+            <span class="ms">psychology</span>
+            <span class="tc-name">tool: llm_verify</span>
+            <span class="tc-arrow">→</span>
+            <span class="tc-result">決議回應確認</span>
+          </div>
+        </div>
+        <div class="output-badge" id="ob4">
+          <span class="ms">check_circle</span>
+          輸出：補正對照表（確認申請人是否依決議修正）
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Stats row -->
+  <div class="stats-row" id="statsRow">
+    <div class="stat-item">
+      <div>
+        <div class="stat-num">~200</div>
+        <div class="stat-label">人日 / 年（現況）</div>
+      </div>
+      <span class="ms" style="font-size:1.5rem;color:rgba(255,107,107,0.6)">trending_down</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="ms" style="font-size:1.5rem;color:var(--blue)">smart_toy</span>
+      <div>
+        <div class="stat-num" style="color:var(--blue)">4 節點</div>
+        <div class="stat-label">AI Agent 自動介入</div>
+      </div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div>
+        <div class="stat-num" style="color:var(--green)">≥ 30%</div>
+        <div class="stat-label">目標複查工時縮減</div>
+      </div>
+      <span class="ms" style="font-size:1.5rem;color:var(--green)">trending_up</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="ms" style="font-size:1.5rem;color:var(--gold)">gavel</span>
+      <div>
+        <div class="stat-num" style="color:var(--gold)">不改</div>
+        <div class="stat-label">委員審查機制（最終核定仍由人）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step counter -->
+  <div class="step-counter" id="stepCounter">
+    <div class="step-pip" id="pip0"></div>
+    <div class="step-pip" id="pip1"></div>
+    <div class="step-pip" id="pip2"></div>
+    <div class="step-pip" id="pip3"></div>
+  </div>
+
+  <!-- Play hint -->
+  <div class="play-hint" id="playHint">
+    <span class="ms">touch_app</span>
+    點擊畫面 / 按空白鍵繼續
+  </div>
+
+</div>
+
+<script>
+// ─── Animation Sequence ───
+const steps = [
+  // Step 0: Show phase 1 + arrow
+  () => {
+    show('ph1'); show('arr1');
+    setPip(0, 'active');
+  },
+  // Step 1: Agent 1
+  () => {
+    activate('ph1');
+    show('cl1');
+    showCard('ag1', [['tc1a',0], ['tc1b',200]], 'ob1');
+    setPip(0, 'done');
+  },
+  // Step 2: Phase 2 + arrow
+  () => {
+    deactivate('ph1');
+    show('ph2'); show('arr2');
+    setPip(1, 'active');
+  },
+  // Step 3: Agent 2
+  () => {
+    activate('ph2');
+    show('cl2');
+    showCard('ag2', [['tc2a',0], ['tc2b',200]], 'ob2');
+    setPip(1, 'done');
+  },
+  // Step 4: Phase 3 + arrow
+  () => {
+    deactivate('ph2');
+    show('ph3'); show('arr3');
+    setPip(2, 'active');
+  },
+  // Step 5: Agent 3
+  () => {
+    activate('ph3');
+    show('cl3');
+    showCard('ag3', [['tc3a',0], ['tc3b',200]], 'ob3');
+    setPip(2, 'done');
+  },
+  // Step 6: Phase 4
+  () => {
+    deactivate('ph3');
+    show('ph4');
+    setPip(3, 'active');
+  },
+  // Step 7: Agent 4 + stats
+  () => {
+    activate('ph4');
+    show('cl4');
+    showCard('ag4', [['tc4a',0], ['tc4b',200]], 'ob4');
+    setPip(3, 'done');
+    setTimeout(() => {
+      const el = document.getElementById('statsRow');
+      el.style.animationDelay = '0s';
+      el.style.animationDuration = '0.5s';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      el.style.animation = 'fadeUp 0.5s ease both';
+    }, 600);
+  },
+];
+
+let cur = 0;
+let auto = true;
+let autoTimer = null;
+
+function show(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (el.classList.contains('phase')) {
+    el.classList.add('show');
+    el.style.animationDelay = '0s';
+  } else if (el.classList.contains('arrow-connector')) {
+    el.classList.add('show');
+  } else if (el.classList.contains('connect-line')) {
+    el.classList.add('show');
+  }
+}
+
+function activate(id) {
+  document.getElementById(id)?.classList.add('active');
+}
+function deactivate(id) {
+  document.getElementById(id)?.classList.remove('active');
+}
+
+function showCard(cardId, toolIds, outputId) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
+  card.classList.add('show');
+  toolIds.forEach(([tid, delay]) => {
+    setTimeout(() => {
+      document.getElementById(tid)?.classList.add('show');
+    }, delay + 200);
+  });
+  setTimeout(() => {
+    document.getElementById(outputId)?.classList.add('show');
+  }, 800);
+}
+
+function setPip(idx, state) {
+  // Clear all pips of this index
+  const pip = document.getElementById('pip' + idx);
+  if (!pip) return;
+  pip.className = 'step-pip ' + state;
+}
+
+function nextStep() {
+  if (cur < steps.length) {
+    steps[cur]();
+    cur++;
+  }
+  if (cur >= steps.length) {
+    clearTimeout(autoTimer);
+    auto = false;
+  }
+}
+
+function scheduleNext() {
+  if (!auto || cur >= steps.length) return;
+  const delays = [600, 800, 600, 800, 600, 800, 600, 1000];
+  autoTimer = setTimeout(() => {
+    nextStep();
+    scheduleNext();
+  }, delays[cur] || 800);
+}
+
+// Show step counter and hint after a moment
+setTimeout(() => {
+  document.getElementById('stepCounter').style.opacity = '1';
+  document.getElementById('playHint').style.opacity = '1';
+}, 800);
+
+// Click / keypress to advance
+document.addEventListener('click', () => {
+  if (auto) { clearTimeout(autoTimer); auto = false; }
+  if (cur < steps.length) { nextStep(); }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Space' || e.code === 'ArrowRight') {
+    e.preventDefault();
+    if (auto) { clearTimeout(autoTimer); auto = false; }
+    if (cur < steps.length) { nextStep(); }
+  }
+  if (e.code === 'ArrowLeft' && cur > 0) {
+    // Reload to restart
+    location.reload();
+  }
+});
+
+// Start auto-play after header animation
+setTimeout(() => {
+  scheduleNext();
+}, 900);
+</script>
+</body>
+</html>
