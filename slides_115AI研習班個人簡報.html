@@ -111,23 +111,39 @@ body {
   font-style: italic;
   letter-spacing: 0.04em;
 }
-#s0 .share-link {
-  display: inline-flex;
+#s0 .cover-share {
+  display: flex;
   align-items: center;
-  gap: 0.4em;
-  margin-top: 0.3rem;
-  font-size: 0.82rem;
-  font-style: normal;
-  color: #7ecfff;
+  gap: 0.9rem;
+  margin-top: 0.5rem;
+  padding: 0.55rem 1rem 0.55rem 0.7rem;
+  background: rgba(13,28,52,0.7);
+  border: 1px solid rgba(126,207,255,0.22);
+  border-radius: 0.8rem;
   text-decoration: none;
-  border: 1px solid rgba(126,207,255,0.3);
-  border-radius: 2rem;
-  padding: 0.3em 1em;
-  background: rgba(126,207,255,0.06);
-  transition: background 0.2s;
-  letter-spacing: 0.02em;
 }
-#s0 .share-link:hover { background: rgba(126,207,255,0.14); }
+#s0 .cover-share:hover { border-color: rgba(126,207,255,0.45); }
+#s0 #cover-qr canvas,
+#s0 #cover-qr img {
+  width: 4.2rem !important;
+  height: 4.2rem !important;
+  display: block;
+  border-radius: 0.25rem;
+}
+#s0 .cover-url { text-align: left; }
+#s0 .cover-url .url-label {
+  font-size: 0.7rem;
+  color: #6ea8d4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.2em;
+}
+#s0 .cover-url .url-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #7ecfff;
+  letter-spacing: 0.01em;
+}
 #s0 .divider {
   width: 5rem;
   height: 2px;
@@ -573,6 +589,7 @@ body {
   .ms-data  { color: #1a5c8a !important; }
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -590,8 +607,12 @@ body {
     <span><span class="ms ms-sm" style="color:#7ecfff">person</span> 邱毓權</span>
   </div>
   <div class="tagline">個人議題分享 · 2026-06-25</div>
-  <a class="share-link" href="https://z111048.github.io/ai-seed-slides/slides_rwd.html" target="_blank">
-    <span class="ms ms-sm">phone_iphone</span> 行動裝置版（RWD）
+  <a class="cover-share" href="https://z111048.github.io/ai-seed-slides/" target="_blank">
+    <div id="cover-qr"></div>
+    <div class="cover-url">
+      <div class="url-label">掃碼開啟行動版</div>
+      <div class="url-text">z111048.github.io/ai-seed-slides</div>
+    </div>
   </a>
 </div>
 
@@ -1427,6 +1448,14 @@ body {
 <div class="score-badge" id="score-badge"></div>
 
 <script>
+new QRCode(document.getElementById('cover-qr'), {
+  text: 'https://z111048.github.io/ai-seed-slides/',
+  width: 67, height: 67,
+  colorDark: '#e8eaf0',
+  colorLight: '#0d1e38',
+  correctLevel: QRCode.CorrectLevel.M
+});
+
 const SCORE_LABELS = [
   '',
   '評分維度：問題清晰度',
