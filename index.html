@@ -551,20 +551,140 @@ body {
 
 /* ══════ Agent 工作流程 iframe ══════ */
 #s_workflow .slide-header { border-top-color: rgba(126,207,255,0.55); }
-.workflow-iframe-wrap {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  border-radius: 0.5rem;
-  margin: 0.75rem 0 0.5rem;
-  background: #080f1e;
+
+/* ── Agent 工作流程：原生 RWD 版 ── */
+.wf-body {
+  padding: 1rem 1.4rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
 }
-.workflow-iframe-wrap iframe {
-  width: 1920px;
-  height: 1080px;
-  transform-origin: top left;
-  border: none;
-  display: block;
+.wf-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+.wf-phase {
+  background: rgba(13,27,48,0.8);
+  border: 1px solid rgba(126,207,255,0.22);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.wf-phase-hd {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 0.85rem;
+  background: rgba(126,207,255,0.07);
+  border-bottom: 1px solid rgba(126,207,255,0.15);
+}
+.wf-phase-hd .ms { font-size: 1.15rem; color: var(--blue); }
+.wf-ph-label { font-size: 0.62rem; color: var(--sub); letter-spacing: 0.04em; }
+.wf-ph-title { font-size: 0.88rem; font-weight: 700; }
+.wf-steps {
+  padding: 0.55rem 0.8rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+}
+.wf-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  color: var(--sub);
+  line-height: 1.4;
+}
+.wf-step .ms { font-size: 0.8rem; color: rgba(126,207,255,0.4); flex-shrink: 0; margin-top: 1px; }
+.wf-step.hl { color: var(--text); }
+.wf-step.hl .ms { color: var(--blue); }
+.wf-agent {
+  margin: 0 0.7rem 0.7rem;
+  background: rgba(5,15,32,0.9);
+  border: 1px solid rgba(126,207,255,0.2);
+  border-top: 2px solid var(--blue);
+  border-radius: 0 0 8px 8px;
+  padding: 0.55rem 0.7rem 0.6rem;
+}
+.wf-agent-title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 0.45rem;
+}
+.wf-robot {
+  width: 18px; height: 18px;
+  background: var(--blue);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.wf-robot .ms { font-size: 0.75rem; color: #040d1a; }
+.wf-tool {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  font-size: 0.68rem;
+  padding: 0.32rem 0.55rem;
+  background: rgba(126,207,255,0.06);
+  border: 1px solid rgba(126,207,255,0.12);
+  border-radius: 5px;
+  margin-bottom: 0.28rem;
+}
+.wf-tool-top {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.wf-tool .ms { font-size: 0.82rem; color: var(--blue); flex-shrink: 0; }
+.wf-tool .tc { color: var(--blue); font-weight: 700; }
+.wf-tool .res {
+  color: var(--green);
+  font-size: 0.64rem;
+  padding-left: 1.25rem;
+  line-height: 1.35;
+}
+.wf-tool .res::before { content: '↳ '; opacity: 0.6; }
+.wf-out {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  font-size: 0.64rem;
+  color: var(--green);
+  background: rgba(125,218,158,0.08);
+  border: 1px solid rgba(125,218,158,0.22);
+  border-radius: 5px;
+  padding: 0.3rem 0.5rem;
+  margin-top: 0.35rem;
+  line-height: 1.4;
+}
+.wf-out .ms { font-size: 0.78rem; flex-shrink: 0; margin-top: 1px; }
+.wf-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+.wf-stat {
+  background: rgba(126,207,255,0.06);
+  border: 1px solid rgba(126,207,255,0.18);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  text-align: center;
+}
+.wf-stat-num { font-size: 1.15rem; font-weight: 700; color: var(--blue); }
+.wf-stat-num.g { color: var(--green); }
+.wf-stat-num.r { color: #ff6b6b; }
+.wf-stat-num.y { color: #f5c842; }
+.wf-stat-label { font-size: 0.62rem; color: var(--sub); margin-top: 2px; line-height: 1.35; }
+@media (max-width: 600px) {
+  .wf-grid { grid-template-columns: 1fr; }
+  .wf-stats { grid-template-columns: repeat(2, 1fr); }
+  .wf-body { padding: 0.75rem 0.9rem 1rem; }
+  .wf-agent-title { font-size: 0.65rem; }
+  .wf-phase-hd .wf-ph-title { font-size: 0.82rem; }
 }
 
 /* ══════ 行動裝置斷點 ══════ */
@@ -975,9 +1095,125 @@ body {
       <div class="sub">依據高雄市都市設計審議作業流程圖，標示 Agent 自動介入節點</div>
     </div>
   </div>
-  <div class="workflow-iframe-wrap">
-    <iframe id="wf-rwd-iframe" src="slide_agent_workflow.html"></iframe>
-  </div>
+
+  <div class="wf-body">
+    <div class="wf-grid">
+
+      <!-- Phase 1 -->
+      <div class="wf-phase">
+        <div class="wf-phase-hd">
+          <span class="ms">inbox</span>
+          <div><div class="wf-ph-label">STAGE 1</div><div class="wf-ph-title">掛件 × 送件</div></div>
+        </div>
+        <div class="wf-steps">
+          <div class="wf-step"><span class="ms">login</span>帳號登入，線上登打案件資料</div>
+          <div class="wf-step hl"><span class="ms">upload_file</span>上傳附件（報告書 PDF）</div>
+          <div class="wf-step"><span class="ms">qr_code</span>產製系統檢核碼，置入報告書</div>
+          <div class="wf-step"><span class="ms">payments</span>繳費完成後正式受理</div>
+        </div>
+        <div class="wf-agent">
+          <div class="wf-agent-title">
+            <div class="wf-robot"><span class="ms">smart_toy</span></div>
+            Agent 介入：送件前自動檢核
+          </div>
+          <div class="wf-tool"><div class="wf-tool-top"><span class="ms">document_scanner</span><span class="tc">ocr_parse</span></div><span class="res">PDF → 結構化章節</span></div>
+          <div class="wf-tool"><div class="wf-tool-top"><span class="ms">rule</span><span class="tc">format_check</span></div><span class="res">缺失項目清單</span></div>
+          <div class="wf-out"><span class="ms">check_circle</span>輸出：格式缺失報告，申請人自助修正，減少退件</div>
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="wf-phase">
+        <div class="wf-phase-hd">
+          <span class="ms">fact_check</span>
+          <div><div class="wf-ph-label">STAGE 2</div><div class="wf-ph-title">書圖審查</div></div>
+        </div>
+        <div class="wf-steps">
+          <div class="wf-step hl"><span class="ms">manage_search</span>承辦人逐頁核對格式符合性</div>
+          <div class="wf-step hl"><span class="ms">edit_note</span>撰寫補正意見，通知申請人</div>
+          <div class="wf-step"><span class="ms">loop</span>申請人依意見補正（平均 2–4 輪）</div>
+          <div class="wf-step"><span class="ms">event_available</span>符合規定後簽准排會</div>
+        </div>
+        <div class="wf-agent">
+          <div class="wf-agent-title">
+            <div class="wf-robot"><span class="ms">smart_toy</span></div>
+            Agent 介入：補正意見草稿生成
+          </div>
+          <div class="wf-tool"><div class="wf-tool-top"><span class="ms">database</span><span class="tc">rag_query</span></div><span class="res">歷史補正意見檢索</span></div>
+          <div class="wf-tool"><div class="wf-tool-top"><span class="ms">psychology</span><span class="tc">llm_draft</span></div><span class="res">意見草稿生成</span></div>
+          <div class="wf-out"><span class="ms">check_circle</span>輸出：逐項補正意見草稿，承辦人審閱後發出</div>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="wf-phase">
+        <div class="wf-phase-hd">
+          <span class="ms">groups</span>
+          <div><div class="wf-ph-label">STAGE 3</div><div class="wf-ph-title">審查會議</div></div>
+        </div>
+        <div class="wf-steps">
+          <div class="wf-step hl"><span class="ms">calendar_month</span>機關通知開會時間</div>
+          <div class="wf-step hl"><span class="ms">present_to_all</span>上傳報告書與簡報書件</div>
+          <div class="wf-step"><span class="ms">gavel</span>委員審查會議，作成決議</div>
+          <div class="wf-step"><span class="ms">refresh</span>未通過 → 依決議修正後續提</div>
+        </div>
+        <div class="wf-agent">
+          <div class="wf-agent-title">
+            <div class="wf-robot"><span class="ms">smart_toy</span></div>
+            Agent 介入：會議摘要 × 逐字稿
+          </div>
+          <div class="wf-tool"><div class="wf-tool-top"><span class="ms">mic</span><span class="tc">speech_to_text</span></div><span class="res">會議逐字稿</span></div>
+          <div class="wf-tool"><div class="wf-tool-top"><span class="ms">summarize</span><span class="tc">llm_summary</span></div><span class="res">決議要點摘要</span></div>
+          <div class="wf-out"><span class="ms">check_circle</span>輸出：會議紀錄草稿 + 案件重點摘要</div>
+        </div>
+      </div>
+
+      <!-- Phase 4 -->
+      <div class="wf-phase">
+        <div class="wf-phase-hd">
+          <span class="ms">verified</span>
+          <div><div class="wf-ph-label">STAGE 4</div><div class="wf-ph-title">核定作業</div></div>
+        </div>
+        <div class="wf-steps">
+          <div class="wf-step hl"><span class="ms">compare_arrows</span>比對核定版與審查版差異</div>
+          <div class="wf-step"><span class="ms">watermark</span>套印浮水印、騎縫章</div>
+          <div class="wf-step"><span class="ms">cloud_upload</span>上傳核定本至服務平台</div>
+          <div class="wf-step"><span class="ms">download</span>開放申請人下載核定函</div>
+        </div>
+        <div class="wf-agent">
+          <div class="wf-agent-title">
+            <div class="wf-robot"><span class="ms">smart_toy</span></div>
+            Agent 介入：版本差異追蹤
+          </div>
+          <div class="wf-tool"><div class="wf-tool-top"><span class="ms">compare_arrows</span><span class="tc">diff_engine</span></div><span class="res">版本差異標記</span></div>
+          <div class="wf-tool"><div class="wf-tool-top"><span class="ms">psychology</span><span class="tc">llm_verify</span></div><span class="res">決議回應確認</span></div>
+          <div class="wf-out"><span class="ms">check_circle</span>輸出：補正對照表，確認申請人是否依決議修正</div>
+        </div>
+      </div>
+
+    </div><!-- /wf-grid -->
+
+    <!-- Stats -->
+    <div class="wf-stats">
+      <div class="wf-stat">
+        <div class="wf-stat-num r">~200</div>
+        <div class="wf-stat-label">人日 / 年（現況耗損）</div>
+      </div>
+      <div class="wf-stat">
+        <div class="wf-stat-num">4 節點</div>
+        <div class="wf-stat-label">AI Agent 自動介入</div>
+      </div>
+      <div class="wf-stat">
+        <div class="wf-stat-num g">≥ 30%</div>
+        <div class="wf-stat-label">目標複查工時縮減</div>
+      </div>
+      <div class="wf-stat">
+        <div class="wf-stat-num y">不改</div>
+        <div class="wf-stat-label">委員審查機制（人工最終核定）</div>
+      </div>
+    </div>
+
+  </div><!-- /wf-body -->
 </div>
 
 <!-- ╔══ SLIDE 3 — 短期可驗證 ══╗ -->
@@ -1700,19 +1936,6 @@ document.querySelectorAll('.data-table').forEach(table => {
   sections.forEach(sec => observer.observe(sec));
 })();
 
-// ── Agent workflow iframe 縮放 ──
-(function scaleWorkflowIframe() {
-  const wrap = document.querySelector('.workflow-iframe-wrap');
-  const iframe = document.getElementById('wf-rwd-iframe');
-  if (!wrap || !iframe) return;
-  function fit() {
-    const scale = wrap.clientWidth / 1920;
-    iframe.style.transform = `scale(${scale})`;
-    wrap.style.height = Math.round(1080 * scale) + 'px';
-  }
-  fit();
-  window.addEventListener('resize', fit);
-})();
 </script>
 </body>
 </html>
