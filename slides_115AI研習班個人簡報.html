@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>115年度 AI 推動實務種子人才研習班 — 個人議題分享</title>
+
+<!-- 字型：Noto Sans TC 400/500/700 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+<!-- 圖示：Material Symbols Outlined（細體，20–48px 自適應）-->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" rel="stylesheet">
+
+<style>
+/* ─── 基準字級：隨螢幕寬度縮放 ─── */
+html { font-size: clamp(18px, 1.6vw, 26px); }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", sans-serif;
+  font-weight: 400;
+  background: #1a1a2e;
+  color: #e8eaf0;
+  overflow: hidden;
+}
+
+/* ─── Material Symbols 統一樣式 ─── */
+.ms {
+  font-family: "Material Symbols Outlined";
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1.25em;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  direction: ltr;
+  vertical-align: -0.2em;
+  -webkit-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+}
+.ms-lg { font-size: 2em; display: block; margin-bottom: 0.3em; }
+.ms-sm { font-size: 1em; vertical-align: -0.15em; }
+.ms-flow { font-size: 1.05em; vertical-align: -0.15em; margin-right: 3px; color: #ffcf6b; }
+.ms-pain { font-size: 1em; vertical-align: -0.12em; margin-right: 3px; color: #ff9090; }
+.ms-check { font-size: 1em; vertical-align: -0.15em; margin-right: 5px; color: #6fcf97; }
+.ms-data { font-size: 1.05em; vertical-align: -0.18em; margin-right: 6px; color: #7ecfff; }
+
+/* ─── 投影片容器 ─── */
+.slide-wrapper { display: none; width: 100vw; height: 100vh; }
+.slide-wrapper.active { display: flex; }
+
+/* ══════ 封面 ══════ */
+#s0 {
+  background: linear-gradient(135deg, #0d2e52 0%, #14213e 55%, #0a1e3a 100%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.1rem;
+}
+#s0 .badge {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 2rem;
+  padding: 0.35em 1.3em;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: #a8d8ff;
+}
+#s0 h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #fff;
+}
+#s0 h2 {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #7fb3e8;
+  margin-top: -0.4rem;
+}
+#s0 .cover-icon {
+  font-family: "Material Symbols Outlined";
+  font-size: 4rem;
+  color: rgba(126,207,255,0.3);
+  margin-bottom: -0.5rem;
+}
+#s0 .meta {
+  display: flex;
+  gap: 1.4rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #bcd6f0;
+  margin-top: 0.4rem;
+}
+#s0 .meta span {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0.5rem;
+  padding: 0.35em 0.9em;
+}
+#s0 .tagline {
+  font-size: 0.95rem;
+  color: #6ea8d4;
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+#s0 .divider {
+  width: 5rem;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(126,207,255,0.5), transparent);
+  border-radius: 1px;
+}
+#s0 .cover-avatar {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(126,207,255,0.55);
+  box-shadow: 0 0 0 5px rgba(126,207,255,0.1);
+}
+
+/* ══════ 共用版型 ══════ */
+.content-slide { flex-direction: column; }
+
+.slide-header {
+  padding: 1.3rem 2.6rem 0.9rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.slide-illus {
+  height: 5.5rem;
+  width: auto;
+  border-radius: 0.5rem;
+  opacity: 0.88;
+  flex-shrink: 0;
+  margin-left: auto;
+  object-fit: cover;
+}
+.slide-header-text { flex: 1; }
+.slide-num {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: #4d8abf;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+.slide-header h2 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+.slide-header .sub {
+  font-size: 0.95rem;
+  color: #7aa8cc;
+  margin-top: 0.2rem;
+  font-weight: 400;
+}
+
+.slide-body {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  padding: 1.1rem 2.6rem 1.3rem;
+  gap: 1.3rem;
+  overflow: hidden;
+}
+
+/* ══════ 欄位 ══════ */
+.col { display: flex; flex-direction: column; gap: 0.7rem; }
+.col-left  { flex: 1.15; }
+.col-right { flex: 0.85; }
+.col-half  { flex: 1; }
+
+/* ══════ 卡片 ══════ */
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 0.8rem;
+  padding: 0.9rem 1.1rem;
+}
+.card h3 {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4d8abf;
+  margin-bottom: 0.55rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.card p  { font-size: 0.95rem; line-height: 1.65; color: #c8cce0; }
+.card ul { padding-left: 1.1em; }
+.card li { font-size: 0.92rem; line-height: 1.65; color: #c8cce0; margin-bottom: 0.2rem; }
+.card-accent { background: rgba(90,159,212,0.07); border-color: rgba(90,159,212,0.22); }
+
+/* ══════ 數據格 ══════ */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.7rem;
+}
+.stat-box {
+  background: rgba(90,159,212,0.1);
+  border: 1px solid rgba(90,159,212,0.28);
+  border-radius: 0.7rem;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+}
+.stat-box .num  { font-size: 1.9rem; font-weight: 700; color: #7ecfff; line-height: 1; }
+.stat-box .unit { font-size: 0.82rem; color: #5a8fb8; margin-top: 0.1rem; }
+.stat-box .label{ font-size: 0.82rem; color: #9aa8cc; margin-top: 0.3rem; }
+
+/* ══════ 流程步驟 ══════ */
+.flow { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.flow-step {
+  background: rgba(255,200,0,0.1);
+  border: 1px solid rgba(255,200,0,0.3);
+  border-radius: 0.5rem;
+  padding: 0.4em 0.75em;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #ffe08a;
+  white-space: nowrap;
+}
+.flow-arrow { color: #4d8abf; font-size: 1.1rem; font-weight: 300; }
+.flow-pain {
+  background: rgba(255,80,80,0.09);
+  border: 1px solid rgba(255,80,80,0.28);
+  border-radius: 0.5rem;
+  padding: 0.35em 0.7em;
+  font-size: 0.88rem;
+  color: #ff9090;
+  margin-top: 0.4rem;
+  display: block;
+}
+
+/* ══════ 表格 ══════ */
+.table-wrap { overflow: hidden; }
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+.data-table th {
+  padding: 0.45em 0.6em;
+  text-align: left;
+  color: #4d8abf;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 0.45em 0.6em;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: #c4c8dc;
+  vertical-align: top;
+  line-height: 1.5;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: rgba(255,255,255,0.025); }
+.tag-p1 { color: #7ecfff; font-weight: 600; white-space: nowrap; }
+.tag-p2 { color: #ffe08a; font-weight: 500; }
+.tag-p3 { color: #9a9abf; }
+
+/* ══════ 時間軸 ══════ */
+.timeline { display: flex; gap: 0.7rem; flex: 1; }
+.tl-phase {
+  flex: 1;
+  border-radius: 0.75rem;
+  padding: 0.85rem 0.9rem;
+}
+.tl-phase h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.55rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  line-height: 1.3;
+}
+.tl-phase ul { padding-left: 1.0em; }
+.tl-phase li { font-size: 0.88rem; color: #b0b8cc; line-height: 1.6; margin-bottom: 0.2rem; }
+.tl-kpi {
+  background: rgba(255,255,255,0.05);
+  border-radius: 0.45rem;
+  padding: 0.45em 0.65em;
+  font-size: 0.82rem;
+  color: #9aa8cc;
+  margin-top: 0.6rem;
+  line-height: 1.5;
+}
+.ph1 { background: rgba(90,159,212,0.1); border: 1px solid rgba(90,159,212,0.25); }
+.ph1 h4 { color: #7ecfff; }
+.ph2 { background: rgba(100,200,130,0.08); border: 1px solid rgba(100,200,130,0.25); }
+.ph2 h4 { color: #7dda9e; }
+.ph3 { background: rgba(255,180,50,0.08); border: 1px solid rgba(255,180,50,0.25); }
+.ph3 h4 { color: #ffc547; }
+
+/* ══════ KPI 橫排 ══════ */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 0.7rem;
+}
+.kpi-box {
+  border-radius: 0.7rem;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+}
+.kpi-box .knum { font-size: 1.55rem; font-weight: 700; line-height: 1; }
+.kpi-box .kunit { font-size: 0.82rem; margin-top: 0.15rem; }
+.kpi-box .klabel { font-size: 0.78rem; margin-top: 0.3rem; color: #8898bb; }
+.kb1 { background: rgba(126,207,255,0.08); border: 1px solid rgba(126,207,255,0.28); }
+.kb1 .knum, .kb1 .kunit { color: #7ecfff; }
+.kb2 { background: rgba(125,218,158,0.08); border: 1px solid rgba(125,218,158,0.28); }
+.kb2 .knum, .kb2 .kunit { color: #7dda9e; }
+.kb3 { background: rgba(255,200,70,0.08); border: 1px solid rgba(255,200,70,0.28); }
+.kb3 .knum, .kb3 .kunit { color: #ffc547; }
+.kb4 { background: rgba(255,120,100,0.08); border: 1px solid rgba(255,120,100,0.28); }
+.kb4 .knum, .kb4 .kunit { color: #ff9090; }
+
+/* ══════ 承諾卡片 ══════ */
+.commit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.7rem;
+  flex: 1;
+}
+.commit-card {
+  background: rgba(255,255,255,0.035);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0.75rem;
+  padding: 0.9rem;
+}
+.commit-card .c-icon {
+  font-family: "Material Symbols Outlined";
+  font-size: 1.6rem;
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+  display: block;
+  color: #7ecfff;
+}
+.commit-card h4 { font-size: 0.92rem; font-weight: 600; color: #a8d4f0; margin-bottom: 0.35rem; }
+.commit-card p  { font-size: 0.88rem; color: #b0b8cc; line-height: 1.6; }
+
+/* ══════ 強調色 ══════ */
+.hl { color: #7ecfff; font-weight: 600; }
+.hl-g { color: #7dda9e; font-weight: 600; }
+
+/* ══════ 導航列 ══════ */
+.dots {
+  position: fixed;
+  right: 1.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  z-index: 100;
+  padding: 0.7rem 0.45rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(126,207,255,0.12);
+  border-radius: 2rem;
+  backdrop-filter: blur(6px);
+}
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s, height 0.25s, border-radius 0.25s;
+}
+.dot:hover { background: rgba(126,207,255,0.5); transform: scale(1.25); }
+.dot.active {
+  background: #7ecfff;
+  height: 22px;
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgba(126,207,255,0.6);
+}
+
+/* ══════ Slide 02 專用：內容較多，壓縮間距 ══════ */
+#s2 .slide-header { padding: 0.9rem 2.6rem 0.6rem; }
+#s2 .slide-body   { padding: 0.6rem 2.2rem 0.7rem; gap: 1rem; }
+#s2 .col          { gap: 0.5rem; }
+#s2 .card         { padding: 0.65rem 0.9rem; }
+#s2 .card h3      { margin-bottom: 0.35rem; padding-bottom: 0.3rem; }
+#s2 .card li      { margin-bottom: 0.1rem; }
+#s2 .data-table th,
+#s2 .data-table td { padding: 0.32em 0.5em; }
+
+/* ══════ 附錄共用版型 ══════ */
+.appendix-body {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  padding: 0.8rem 2.2rem 1rem;
+  gap: 1rem;
+  overflow: hidden;
+}
+.appendix-body .col { gap: 0.55rem; }
+.appendix-body .card { padding: 0.7rem 0.9rem; }
+.appendix-body .card h3 { margin-bottom: 0.35rem; padding-bottom: 0.3rem; }
+.appendix-body .card li { margin-bottom: 0.15rem; }
+.appendix-body .data-table th,
+.appendix-body .data-table td { padding: 0.32em 0.5em; }
+
+.nav {
+  position: fixed;
+  bottom: 1rem;
+  right: 1.6rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 100;
+}
+.nav-btn {
+  background: rgba(90,159,212,0.18);
+  border: 1px solid rgba(90,159,212,0.35);
+  border-radius: 50%;
+  width: 2.1rem; height: 2.1rem;
+  color: #7ecfff;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.18s;
+  font-family: "Material Symbols Outlined";
+  font-size: 1.15rem;
+  font-weight: 300;
+}
+.nav-btn:hover { background: rgba(90,159,212,0.38); }
+.nav-btn-print {
+  background: rgba(125,218,158,0.15);
+  border-color: rgba(125,218,158,0.3);
+  color: #7dda9e;
+  font-size: 1.1rem;
+  border-radius: 0.55rem;
+  width: auto;
+  padding: 0 0.7rem;
+  gap: 0.3rem;
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+.nav-btn-print .ms { font-size: 1.1rem; }
+
+.score-badge {
+  position: fixed;
+  top: 1rem;
+  right: 1.4rem;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #4d8abf;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+  z-index: 100;
+}
+
+/* ══════ 列印 ══════ */
+@media print {
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  html { font-size: 10pt; }
+  body { background: #fff !important; color: #111 !important; overflow: visible; }
+
+  .nav, .dots, .score-badge { display: none !important; }
+  .slide-illus { display: none !important; }
+
+  .slide-wrapper {
+    display: flex !important;
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  /* 封面列印 */
+  #s0 {
+    background: #0d2e52 !important;
+    color: #fff !important;
+  }
+
+  /* 內容投影片列印 */
+  .content-slide {
+    background: #fff !important;
+    color: #111 !important;
+  }
+  .slide-header { border-bottom-color: #ddd !important; }
+  .slide-header h2 { color: #111 !important; }
+  .slide-num, .slide-header .sub { color: #555 !important; }
+
+  .card {
+    background: #f7f8fa !important;
+    border-color: #ddd !important;
+    break-inside: avoid;
+  }
+  .card h3 { color: #1a5c8a !important; border-bottom-color: #ddd !important; }
+  .card p, .card li { color: #222 !important; }
+
+  .stat-box { background: #eef4fb !important; border-color: #b0cce0 !important; }
+  .stat-box .num { color: #1a5c8a !important; }
+  .stat-box .unit, .stat-box .label { color: #444 !important; }
+
+  .flow-step { background: #fffae8 !important; border-color: #e0c84a !important; color: #7a5a00 !important; }
+  .flow-pain { background: #fff0f0 !important; border-color: #e08080 !important; color: #8a1515 !important; }
+
+  .data-table th { color: #1a5c8a !important; border-bottom-color: #ccc !important; }
+  .data-table td { color: #222 !important; border-bottom-color: #eee !important; }
+  .tag-p1 { color: #1a5c8a !important; }
+  .tag-p2 { color: #8a6500 !important; }
+  .tag-p3 { color: #555 !important; }
+
+  .tl-phase { break-inside: avoid; }
+  .ph1 { background: #eef4fb !important; border-color: #b0cce0 !important; }
+  .ph1 h4 { color: #1a5c8a !important; }
+  .ph2 { background: #edfbf2 !important; border-color: #90d4a8 !important; }
+  .ph2 h4 { color: #157a3f !important; }
+  .ph3 { background: #fffbef !important; border-color: #e0c050 !important; }
+  .ph3 h4 { color: #8a6500 !important; }
+  .tl-phase li { color: #333 !important; }
+  .tl-kpi { background: #f0f0f5 !important; color: #444 !important; }
+
+  .commit-card { background: #f7f8fa !important; border-color: #ddd !important; break-inside: avoid; }
+  .commit-card .c-icon, .commit-card h4 { color: #1a5c8a !important; }
+  .commit-card p { color: #222 !important; }
+
+  .kpi-box { break-inside: avoid; }
+  .kb1 { background: #eef4fb !important; border-color: #b0cce0 !important; }
+  .kb1 .knum, .kb1 .kunit { color: #1a5c8a !important; }
+  .kb2 { background: #edfbf2 !important; border-color: #90d4a8 !important; }
+  .kb2 .knum, .kb2 .kunit { color: #157a3f !important; }
+  .kb3 { background: #fffbef !important; border-color: #e0c050 !important; }
+  .kb3 .knum, .kb3 .kunit { color: #8a6500 !important; }
+  .kb4 { background: #fff4f4 !important; border-color: #e0a0a0 !important; }
+  .kb4 .knum, .kb4 .kunit { color: #8a1515 !important; }
+
+  .hl  { color: #1a5c8a !important; }
+  .hl-g{ color: #157a3f !important; }
+
+  .ms, .c-icon, .cover-icon { color: #1a5c8a !important; }
+  .ms-flow { color: #7a5a00 !important; }
+  .ms-pain { color: #8a1515 !important; }
+  .ms-check { color: #157a3f !important; }
+  .ms-data  { color: #1a5c8a !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ╔══ SLIDE 0 — 封面 ══╗ -->
+<div id="s0" class="slide-wrapper">
+  <div class="badge">115 年度 AI 推動實務種子人才研習班（第二期）· 第五組</div>
+  <h1>AI 輔助都市設計審議<br>報告書檢核系統</h1>
+  <div class="divider"></div>
+  <h2>多技術整合，降低初審與補正複查人力負擔</h2>
+  <img class="cover-avatar" src="data:image/jpeg;base64,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" alt="邱毓權">
+  <div class="meta">
+    <span><span class="ms ms-sm" style="color:#7ecfff">location_city</span> 高雄市政府都市發展局</span>
+    <span><span class="ms ms-sm" style="color:#7ecfff">domain</span> 都市設計科</span>
+    <span><span class="ms ms-sm" style="color:#7ecfff">badge</span> 副工程司</span>
+    <span><span class="ms ms-sm" style="color:#7ecfff">person</span> 邱毓權</span>
+  </div>
+  <div class="tagline">個人議題分享 · 2026-06-25</div>
+</div>
+
+<!-- ╔══ SLIDE 1 — 痛點現場 ══╗ -->
+<div id="s1" class="slide-wrapper content-slide">
+  <div class="slide-header">
+    <div class="slide-header-text">
+      <div class="slide-num">01 / 04 · 問題清晰度</div>
+      <h2>痛點現場 — 每案必審、每次必改</h2>
+      <div class="sub">誰、在哪個環節、花多少時間？</div>
+    </div>
+  </div>
+  <div class="slide-body">
+
+    <div class="col col-left">
+      <div class="card">
+        <h3>受影響對象 × 發生環節</h3>
+        <div class="flow">
+          <div class="flow-step">
+            <span class="ms ms-flow">inbox</span>案件受理
+          </div>
+          <span class="flow-arrow">›</span>
+          <div class="flow-step" style="border-color:rgba(255,100,100,0.4);background:rgba(255,100,100,0.1);color:#ffaaaa;">
+            <span class="ms ms-flow" style="color:#ffaaaa;">search</span>初審逐頁核對
+          </div>
+          <span class="flow-arrow">›</span>
+          <div class="flow-step">
+            <span class="ms ms-flow">edit_note</span>補正意見撰寫
+          </div>
+          <span class="flow-arrow">›</span>
+          <div class="flow-step" style="border-color:rgba(255,100,100,0.4);background:rgba(255,100,100,0.1);color:#ffaaaa;">
+            <span class="ms ms-flow" style="color:#ffaaaa;">compare</span>複查版本差異
+          </div>
+          <span class="flow-arrow">›</span>
+          <div class="flow-step" style="border-color:rgba(100,200,100,0.4);background:rgba(100,200,100,0.08);color:#90e090;">
+            <span class="ms ms-flow" style="color:#90e090;">task_alt</span>審議核定
+          </div>
+        </div>
+        <div class="flow-pain">
+          <span class="ms ms-pain">warning</span>初審逐頁：章節完整性 × 書圖一致性 × 法規檢討 × 圖面標示
+        </div>
+        <div class="flow-pain">
+          <span class="ms ms-pain">warning</span>每次補正複查：比對前後版本差異，不熟悉規範事務所需逐頁說明
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>量化規模</h3>
+        <div class="stat-grid">
+          <div class="stat-box">
+            <div class="num">7</div>
+            <div class="unit">人</div>
+            <div class="label">科室承辦員額</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">~100</div>
+            <div class="unit">件 / 年</div>
+            <div class="label">年均受理案量</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">59</div>
+            <div class="unit">件</div>
+            <div class="label">當前程序中案件</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">½</div>
+            <div class="unit">天 / 次</div>
+            <div class="label">每次補正複查耗時</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">2–4</div>
+            <div class="unit">次 / 案</div>
+            <div class="label">平均補正輪次</div>
+          </div>
+          <div class="stat-box">
+            <div class="num">~200</div>
+            <div class="unit">人日 / 年</div>
+            <div class="label">全科年耗初審複查</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-right">
+      <div class="card">
+        <h3>審議淨工作天（近 5 年實績）</h3>
+        <ul>
+          <li>全員委員會 — 平均 <span class="hl">70.4 天</span>（36 件核定）</li>
+          <li>專案委員會 — 平均 <span class="hl">61.1 天</span>（46 件核定）</li>
+          <li>簡化委員會 — 平均 <span class="hl">51.4 天</span>（111 件核定）</li>
+          <li>幹事會 &emsp;&emsp;— 平均 <span class="hl">45.4 天</span>（96 件核定）</li>
+          <li>簽證案 &emsp;&emsp;— 平均 <span class="hl">22.5 天</span>（39 件核定）</li>
+        </ul>
+        <p style="margin-top:0.5rem;font-size:0.8rem;color:#6688aa;">初審與補正作業為可量化縮減的前段時間</p>
+        <p style="margin-top:0.3rem;font-size:0.82rem;color:#ffcf6b;">⚠ 114 年全員委員會單年均已達 <strong style="color:#ff9090;">116.6 天</strong>，為 111 年的 4.8 倍</p>
+      </div>
+      <div class="card">
+        <h3>不解決的代價</h3>
+        <ul>
+          <li><span class="ms ms-sm" style="color:#ff9090;">trending_down</span> 200 人日 / 年流失於重複性格式比對</li>
+          <li><span class="ms ms-sm" style="color:#ff9090;">person_off</span> 人才離職後隱性知識歸零</li>
+          <li><span class="ms ms-sm" style="color:#ff9090;">schedule</span> 不熟悉規範事務所拉長整體審議週期</li>
+          <li><span class="ms ms-sm" style="color:#ff9090;">block</span> 承辦人無暇聚焦設計品質實質審查</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ╔══ SLIDE 2 — AI 解方 ══╗ -->
+<div id="s2" class="slide-wrapper content-slide">
+  <div class="slide-header">
+    <div class="slide-header-text">
+      <div class="slide-num">02 / 04 · 解方可行性</div>
+      <h2>AI 解方 — 多技術整合，分階段落地</h2>
+      <div class="sub">訂閱制工具起步 × 影像辨識 × 語音辨識 × 知識庫，覆蓋審議全流程</div>
+    </div>
+  </div>
+  <div class="slide-body">
+
+    <div class="col col-left">
+      <div class="card">
+        <h3>AI 技術地圖 × 應用場景</h3>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th><span class="ms ms-sm">category</span> 技術類別</th>
+                <th><span class="ms ms-sm">build</span> 工具 / 方式</th>
+                <th><span class="ms ms-sm">target</span> 解決哪個痛點</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tag-p1"><span class="ms ms-sm">psychology</span> 大型語言模型</td>
+                <td>訂閱制（Claude.ai / Copilot）</td>
+                <td>格式檢核、補正意見草稿、法規問答</td>
+              </tr>
+              <tr>
+                <td class="tag-p1"><span class="ms ms-sm">document_scanner</span> 文件 OCR</td>
+                <td>Azure Doc Intelligence / pdfplumber</td>
+                <td>報告書 PDF → 結構化章節 × 圖表擷取</td>
+              </tr>
+              <tr>
+                <td class="tag-p2"><span class="ms ms-sm">image_search</span> 影像辨識</td>
+                <td>Vision LLM（訂閱 Multimodal）</td>
+                <td>書圖一致性比對、圖面標示自動確認</td>
+              </tr>
+              <tr>
+                <td class="tag-p2"><span class="ms ms-sm">mic</span> 語音辨識</td>
+                <td>Whisper / Azure Speech</td>
+                <td>委員會 × 幹事會會議逐字稿自動產出</td>
+              </tr>
+              <tr>
+                <td class="tag-p3"><span class="ms ms-sm">database</span> 知識庫 RAG</td>
+                <td>本地向量資料庫</td>
+                <td>法規條文比對、歷史補正意見檢索</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card card-accent">
+        <h3>導入策略：先訂閱 → 再客製</h3>
+        <ul>
+          <li>初期以<span class="hl">訂閱制</span>工具驗證需求，不綁 API 帳單、採購流程簡單</li>
+          <li>機敏欄位<span class="hl">去識別化</span>後送入 AI Agent 輔助；雲端資源須待<span class="hl">資安審查 × 系統穩定性</span>評估通過後才導入</li>
+          <li>POC 驗證有效後，視需求再評估 API 或自建模型；現有都設審議 Bot 平台作為整合基礎</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col col-right">
+      <div class="card">
+        <h3>已盤點數據資產</h3>
+        <ul>
+          <li><span class="ms ms-data">folder_open</span>歷史審議案件 <span class="hl">3,884 件</span>（含報告書、進度、核定資料）</li>
+          <li><span class="ms ms-data">event_note</span>委員會 × 幹事會會議紀錄 <span class="hl">2,882 場</span>（近 15 年）</li>
+          <li><span class="ms ms-data">forum</span>決議 × 審查意見全文 <span class="hl">97,127 條</span>（已結構化入庫）</li>
+          <li><span class="ms ms-data">note_alt</span>常見補正意見大全（近 5 年）</li>
+          <li><span class="ms ms-data">balance</span>都市設計相關法規、審議原則</li>
+        </ul>
+      </div>
+      <div class="card" style="background:rgba(255,200,70,0.06);border-color:rgba(255,200,70,0.22);">
+        <h3>預算概估</h3>
+        <ul>
+          <li>POC 階段：~<span class="hl">NT$9,000</span>（訂閱費 3 個月；內部人力以現有員額自行投入，不另計外包費）</li>
+          <li>系統建置 + 資安委外：<span class="hl">NT$100–200 萬</span>（一次性採購）</li>
+          <li>持續費用：<span class="hl">NT$2–4 萬 / 月</span>（LLM 訂閱、API、主機、維護）</li>
+          <li>申請城鄉基金時須涵蓋<span class="hl">採購款 + 首年維運費</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>優先落地項目</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>優先</th><th>功能模組</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="tag-p1">P1</td><td>報告書章節完整性自動檢核</td></tr>
+            <tr><td class="tag-p1">P1</td><td>補正意見草稿生成</td></tr>
+            <tr><td class="tag-p1">P1</td><td>會議前案件重點摘要</td></tr>
+            <tr><td class="tag-p2">P2</td><td>會議逐字稿自動生成（語音辨識）</td></tr>
+            <tr><td class="tag-p2">P2</td><td>版本差異 × 補正回應追蹤</td></tr>
+            <tr><td class="tag-p3">P3</td><td>書圖一致性影像辨識檢核</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ╔══ SLIDE 3 — 短期可驗證 ══╗ -->
+<div id="s3" class="slide-wrapper content-slide">
+  <div class="slide-header">
+    <div class="slide-header-text">
+      <div class="slide-num">03 / 04 · 解方可行性 × 可驗證</div>
+      <h2>短期可驗證 — 90 天 POC 計畫</h2>
+      <div class="sub">以量化 KPI 衡量 AI 的真實效益</div>
+    </div>
+  </div>
+  <div class="slide-body" style="flex-direction:column;gap:0.8rem;">
+
+    <div class="timeline">
+      <div class="tl-phase ph1">
+        <h4><span class="ms ms-sm">storage</span> 第 1 個月 — 資料基礎建設</h4>
+        <ul>
+          <li>OCR 處理近 3 年報告書（~300 件）</li>
+          <li>結構化法規條文 × 補正意見庫</li>
+          <li>法規組 × 歷史資料組完成 Skill 技能包</li>
+          <li>建立向量索引（RAG 知識庫）</li>
+        </ul>
+        <div class="tl-kpi"><span class="ms ms-sm">flag</span> 里程碑：知識庫可查詢，回答準確率 ≥ 80%</div>
+      </div>
+      <div class="tl-phase ph2">
+        <h4><span class="ms ms-sm">code</span> 第 2 個月 — 內部 POC 開發 × 試用</h4>
+        <ul>
+          <li>訂閱制工具（Claude.ai / Whisper）串接報告書檢核</li>
+          <li>補正意見草稿生成器初版上線</li>
+          <li>科室承辦員<span class="hl-g">即時協作試用 5 件</span>新進案件，驗證操作流暢度</li>
+          <li>從歷史案件取 <span class="hl-g">50 件</span>進行 AI 重跑比對，建立準確率基線</li>
+        </ul>
+        <div class="tl-kpi"><span class="ms ms-sm">flag</span> 里程碑：格式檢核準確率 ≥ 85%、補正意見可用率 ≥ 70%（以 50 件歷史案件 AI 重跑結果對照人工原始紀錄）</div>
+      </div>
+      <div class="tl-phase ph3">
+        <h4><span class="ms ms-sm">groups</span> 第 3 個月 — Beta 測試 × 效益驗證</h4>
+        <ul>
+          <li>以<span class="hl-g">機關內部及公家單位</span>案件進行第一波測試，確認系統穩定性</li>
+          <li>第二波邀請<span class="hl-g">常送件五大事務所</span>案件測試，收集補正意見清晰度回饋</li>
+          <li>評估 Vision LLM 圖面辨識誤判率（列獨立風險項），完成功能需求清單</li>
+          <li>向長官呈報效益報告，研議資安審查時程與雲端導入可行性</li>
+        </ul>
+        <div class="tl-kpi"><span class="ms ms-sm">flag</span> 里程碑：試辦案件複查時間縮短 ≥ 30%（以人工複查時間為基線對照）</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi-box kb1">
+        <div class="knum">≥ 30%</div>
+        <div class="kunit">複查工時縮減</div>
+        <div class="klabel">90 天驗證目標</div>
+      </div>
+      <div class="kpi-box kb2">
+        <div class="knum">≥ 85%</div>
+        <div class="kunit">格式檢核準確率</div>
+        <div class="klabel">POC 第 2 個月</div>
+      </div>
+      <div class="kpi-box kb3">
+        <div class="knum">5 家</div>
+        <div class="kunit">事務所 Beta 測試</div>
+        <div class="klabel">POC 第 3 個月</div>
+      </div>
+      <div class="kpi-box kb4">
+        <div class="knum">60+</div>
+        <div class="kunit">人日 / 年釋放</div>
+        <div class="klabel">目標成效（保守估計）</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ╔══ SLIDE 4 — 推動承諾 ══╗ -->
+<div id="s4" class="slide-wrapper content-slide">
+  <div class="slide-header">
+    <div class="slide-header-text">
+      <div class="slide-num">04 / 04 · 推動意願</div>
+      <h2>推動承諾 — 條件就緒，下一步明確</h2>
+      <div class="sub">長官支持 × 預算來源 × 具體行動時程</div>
+    </div>
+  </div>
+  <div class="slide-body">
+
+    <div class="col col-left">
+      <div class="commit-grid">
+        <div class="commit-card">
+          <span class="c-icon">account_balance</span>
+          <h4>長官支持</h4>
+          <p>科長已<span class="hl">口頭明確支持</span>並授權啟動規劃；<span class="hl">2026-07-25</span> 提交書面可行性簽呈正式轉為書面授權。副局長層級已於研習前知情並無異議。</p>
+        </div>
+        <div class="commit-card">
+          <span class="c-icon">payments</span>
+          <h4>預算來源</h4>
+          <p>規劃申請<span class="hl">高雄市城鄉發展及都市更新基金</span>支應 POC 開發及後續正式採購費用。</p>
+        </div>
+        <div class="commit-card">
+          <span class="c-icon">groups</span>
+          <h4>分工規劃</h4>
+          <p>科室內三組分工：<br>
+          <span class="ms ms-sm" style="color:#7dda9e">circle</span> <span class="hl-g">法規組</span> — 整理法規 Skill 技能包<br>
+          <span class="ms ms-sm" style="color:#7dda9e">circle</span> <span class="hl-g">歷史資料組</span> — 整理補正意見範例<br>
+          <span class="ms ms-sm" style="color:#7ecfff">circle</span> <span class="hl">邱毓權</span> — 統籌技術開發</p>
+        </div>
+        <div class="commit-card">
+          <span class="c-icon">shield</span>
+          <h4>安全策略</h4>
+          <p>機敏欄位去識別化後，以 <span class="hl">AI Agent</span> 輔助處理；雲端資源租用須待資安審查與系統穩定性評估通過後才考量導入，不在 POC 階段使用。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-right">
+      <div class="card">
+        <h3>下一步行動（訓後 30 天）</h3>
+        <ul>
+          <li><span class="ms ms-check">check_circle</span><span class="hl">2026-07-13</span> 科室三組第一次 Kick-off 會議</li>
+          <li><span class="ms ms-check">check_circle</span><span class="hl">2026-07-25</span> 向科長提交書面可行性評估報告</li>
+          <li><span class="ms ms-check">check_circle</span>啟動科室內資料盤點 SOP 制定</li>
+          <li><span class="ms ms-check">check_circle</span>以現有都設審議 Bot 平台擴充 AI 檢核模組</li>
+          <li><span class="ms ms-check">check_circle</span><span class="hl">2026-08</span> 城鄉發展基金申請窗口提出預算規劃書</li>
+        </ul>
+      </div>
+      <div class="card card-accent">
+        <h3>核心承諾</h3>
+        <p>
+          <span class="ms ms-sm" style="color:#7ecfff">event</span> <span class="hl">2026-07-25</span> 書面可行性報告送科長核閱<br>
+          <span class="ms ms-sm" style="color:#7ecfff">rocket_launch</span> <span class="hl">2026-09-25</span> 完成內部 POC 並量化成效<br>
+          <span class="ms ms-sm" style="color:#7dda9e">savings</span> 目標讓每位承辦同仁每年<span class="hl-g">節省 ≥ 1 個月</span>重複性作業時間
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ╔══ SLIDE 5 — 附錄 A：落地計畫 × POC × 資產 ══╗ -->
+<div id="s5" class="slide-wrapper content-slide">
+  <div class="slide-header">
+    <div class="slide-header-text">
+      <div class="slide-num">附錄 A · 加分項目補充說明</div>
+      <h2>落地可行性 × POC 規劃 × 已就緒資產</h2>
+      <div class="sub">分階段分模組計畫書 × Claude Code POC × 資料盤點</div>
+    </div>
+  </div>
+  <div class="appendix-body">
+
+    <!-- 左欄：分階段分模組計畫 -->
+    <div class="col col-left">
+      <div class="card">
+        <h3>分階段分模組開發計畫書</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>階段</th>
+              <th>模組</th>
+              <th>技術選型</th>
+              <th>里程碑</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tag-p1" rowspan="2" style="vertical-align:middle;white-space:nowrap;">
+                <span class="ms ms-sm">looks_one</span> Phase 1<br>
+                <span style="font-size:0.78rem;color:#6688aa;font-weight:400;">月 1–3</span>
+              </td>
+              <td>文件 OCR 解析</td>
+              <td>Azure Doc Intelligence / pdfplumber</td>
+              <td>報告書可結構化查詢</td>
+            </tr>
+            <tr>
+              <td>RAG 知識庫建立</td>
+              <td>本地向量 DB + 法規 × 補正意見</td>
+              <td>問答準確率 ≥ 80%</td>
+            </tr>
+            <tr>
+              <td class="tag-p1" rowspan="2" style="vertical-align:middle;white-space:nowrap;">
+                <span class="ms ms-sm">looks_two</span> Phase 2<br>
+                <span style="font-size:0.78rem;color:#6688aa;font-weight:400;">月 4–6</span>
+              </td>
+              <td>格式 × 章節完整性檢核</td>
+              <td>LLM + Rule Engine（訂閱制）</td>
+              <td>格式準確率 ≥ 85%</td>
+            </tr>
+            <tr>
+              <td>補正意見草稿生成</td>
+              <td>LLM + 歷史補正意見 RAG</td>
+              <td>可用率 ≥ 70%</td>
+            </tr>
+            <tr>
+              <td class="tag-p2" rowspan="3" style="vertical-align:middle;white-space:nowrap;">
+                <span class="ms ms-sm">looks_3</span> Phase 3<br>
+                <span style="font-size:0.78rem;color:#6688aa;font-weight:400;">月 7–12</span>
+              </td>
+              <td>語音辨識逐字稿</td>
+              <td>Whisper / Azure Speech</td>
+              <td>會議逐字稿自動產出</td>
+            </tr>
+            <tr>
+              <td>版本差異 × 補正追蹤</td>
+              <td>Diff Engine + LLM 摘要</td>
+              <td>版本比對自動標記</td>
+            </tr>
+            <tr>
+              <td>書圖一致性影像辨識</td>
+              <td>Vision LLM（待資安評估）</td>
+              <td>圖面誤判率 &lt; 10%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 右欄 -->
+    <div class="col col-right">
+
+      <div class="card" style="background:rgba(126,207,255,0.06);border-color:rgba(126,207,255,0.22);">
+        <h3>產品 POC — Claude Code 快速開發</h3>
+        <ul>
+          <li><span class="ms ms-sm" style="color:#7ecfff;">smart_toy</span> 以 <span class="hl">Claude Code</span> 開發 POC 雛型，可快速迭代驗證</li>
+          <li><span class="ms ms-sm" style="color:#7ecfff;">domain</span> <span class="hl-g">第一波</span>：機關內部 × 公家單位案件測試（控制資安風險，驗穩定性）</li>
+          <li><span class="ms ms-sm" style="color:#7ecfff;">business</span> <span class="hl-g">第二波</span>：常送件五大事務所案件封閉測試（驗真實效益）</li>
+          <li><span class="ms ms-sm" style="color:#7ecfff;">security</span> 穩定性與資安評估通過後，再由廠商協助正式化</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>已就緒資產（規劃中案件）</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>資料類型</th><th>現況</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="ms ms-sm" style="color:#7ecfff">folder_open</span> 案件申請基本資料</td>
+              <td><span class="hl">3,884 件</span>歷史案件（已入庫）</td>
+            </tr>
+            <tr>
+              <td><span class="ms ms-sm" style="color:#7ecfff">description</span> 歷史案件報告書</td>
+              <td>近 3 年 ~300 件（PDF，待 OCR）</td>
+            </tr>
+            <tr>
+              <td><span class="ms ms-sm" style="color:#7ecfff">mic</span> 會議紀錄逐字稿</td>
+              <td><span class="hl">97,127 條</span>決議意見（已結構化）</td>
+            </tr>
+            <tr>
+              <td><span class="ms ms-sm" style="color:#7ecfff">note_alt</span> 補正意見大全</td>
+              <td>近 5 年常見缺失清單</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ╔══ SLIDE 6 — 附錄 B：推動條件 × 總費用試算 ══╗ -->
+<div id="s6" class="slide-wrapper content-slide">
+  <div class="slide-header">
+    <div class="slide-header-text">
+      <div class="slide-num">附錄 B · 推動條件 × 總費用試算</div>
+      <h2>長官支持 × 預算來源 × TCO 完整試算</h2>
+      <div class="sub">Total Cost of Ownership — 一次性採購 + 每月持續費用</div>
+    </div>
+  </div>
+  <div class="appendix-body">
+
+    <div class="col col-half">
+      <div class="card" style="background:rgba(125,218,158,0.06);border-color:rgba(125,218,158,0.22);">
+        <h3>推動支持條件</h3>
+        <ul>
+          <li><span class="ms ms-sm" style="color:#7dda9e">thumb_up</span>
+            長官支持度：<span class="hl-g">高</span>（科長口頭授權啟動，副局長知情）</li>
+          <li><span class="ms ms-sm" style="color:#7dda9e">payments</span>
+            經費：<span class="hl-g">高雄市城鄉發展及都市更新基金</span></li>
+          <li><span class="ms ms-sm" style="color:#7dda9e">engineering</span>
+            技術統籌：具前後端開發能力（Python × Node.js），可自主推動 POC</li>
+          <li><span class="ms ms-sm" style="color:#7dda9e">calendar_today</span>
+            2026-07-25 提交書面可行性簽呈，轉為正式書面授權</li>
+          <li><span class="ms ms-sm" style="color:#7dda9e">event_available</span>
+            2026-08 城鄉基金申請窗口提出預算規劃書</li>
+        </ul>
+      </div>
+      <div class="card card-accent">
+        <h3>申請基金注意事項</h3>
+        <ul>
+          <li>申請金額應涵蓋<span class="hl">採購款 + 首年維運費用</span>，避免系統上線後維運斷炊</li>
+          <li>資安委外採<span class="hl">政府共同供應契約</span>框架，免重新招標，加快採購時程</li>
+          <li>雲端資源租用以<span class="hl">資安審查通過</span>為前提，非 POC 必要支出</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col col-half">
+      <div class="card" style="background:rgba(255,200,70,0.06);border-color:rgba(255,200,70,0.22);">
+        <h3>總費用試算（TCO）</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>費用項目</th>
+              <th style="text-align:right;">估計金額</th>
+              <th style="white-space:nowrap;">週期</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="3" style="color:#ffc547;font-size:0.78rem;padding-top:0.5em;">── 一次性費用 ──</td>
+            </tr>
+            <tr>
+              <td>POC 訂閱費 + 內部人力</td>
+              <td style="text-align:right;">~NT$9,000</td>
+              <td style="color:#9aa8cc;">一次</td>
+            </tr>
+            <tr>
+              <td>系統建置（OCR + LLM 模組）</td>
+              <td style="text-align:right;">NT$80–150 萬</td>
+              <td style="color:#9aa8cc;">一次</td>
+            </tr>
+            <tr>
+              <td>資安委外強化</td>
+              <td style="text-align:right;">NT$20–50 萬</td>
+              <td style="color:#9aa8cc;">一次</td>
+            </tr>
+            <tr>
+              <td colspan="3" style="color:#ff9090;font-size:0.78rem;padding-top:0.5em;">── 每月持續費用 ──</td>
+            </tr>
+            <tr>
+              <td>LLM 訂閱費（Team × 7 人）</td>
+              <td style="text-align:right;">NT$7,000–12,000</td>
+              <td style="color:#9aa8cc;">每月</td>
+            </tr>
+            <tr>
+              <td>OCR + 語音辨識 API</td>
+              <td style="text-align:right;">NT$1,500–3,000</td>
+              <td style="color:#9aa8cc;">每月</td>
+            </tr>
+            <tr>
+              <td>雲端主機 / 向量 DB 儲存</td>
+              <td style="text-align:right;">NT$3,000–8,000</td>
+              <td style="color:#9aa8cc;">每月</td>
+            </tr>
+            <tr>
+              <td>系統維護費（承包商）</td>
+              <td style="text-align:right;">NT$8,000–20,000</td>
+              <td style="color:#9aa8cc;">每月</td>
+            </tr>
+            <tr style="font-weight:700;border-top:1px solid rgba(255,200,70,0.3);">
+              <td>每月合計</td>
+              <td style="text-align:right;color:#ffc547;">NT$2–4 萬</td>
+              <td style="color:#ffc547;">每月</td>
+            </tr>
+            <tr style="font-weight:700;">
+              <td>年度持續費用</td>
+              <td style="text-align:right;color:#7ecfff;">約 NT$25–50 萬</td>
+              <td style="color:#7ecfff;">每年</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ╔══ SLIDE 7 — 附錄 C：數據佐證 ══╗ -->
+<div id="s7" class="slide-wrapper content-slide">
+  <div class="slide-header">
+    <div class="slide-header-text">
+      <div class="slide-num">附錄 C · 統計數據佐證</div>
+      <h2>審議趨勢惡化中 — 數據說話</h2>
+      <div class="sub">資料來源：都設審議系統（案件 3,943 件）× 會議紀錄（2,882 場）</div>
+    </div>
+  </div>
+  <div class="appendix-body">
+
+    <!-- 左欄 -->
+    <div class="col col-half">
+
+      <div class="card" style="background:rgba(255,80,80,0.06);border-color:rgba(255,80,80,0.22);">
+        <h3>審議天數急速延長（全員委員會）</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>年度</th><th style="text-align:right;">全員</th><th style="text-align:right;">專案</th><th style="text-align:right;">簡化</th><th style="text-align:right;">幹事會</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>111 年</td>
+              <td style="text-align:right;color:#7dda9e;">24.5 天</td>
+              <td style="text-align:right;color:#7dda9e;">23.0 天</td>
+              <td style="text-align:right;color:#7dda9e;">26.3 天</td>
+              <td style="text-align:right;color:#7dda9e;">29.5 天</td>
+            </tr>
+            <tr>
+              <td>112 年</td>
+              <td style="text-align:right;color:#ffc547;">47.8 天</td>
+              <td style="text-align:right;color:#ffc547;">57.9 天</td>
+              <td style="text-align:right;color:#ffc547;">54.2 天</td>
+              <td style="text-align:right;color:#ffc547;">43.6 天</td>
+            </tr>
+            <tr>
+              <td>113 年</td>
+              <td style="text-align:right;color:#ff9090;">85.1 天</td>
+              <td style="text-align:right;color:#ff9090;">87.5 天</td>
+              <td style="text-align:right;color:#ff9090;">50.1 天</td>
+              <td style="text-align:right;color:#ff9090;">46.9 天</td>
+            </tr>
+            <tr style="font-weight:700;">
+              <td>114 年</td>
+              <td style="text-align:right;color:#ff4444;">116.6 天</td>
+              <td style="text-align:right;color:#ff9090;">69.8 天</td>
+              <td style="text-align:right;color:#ff9090;">71.4 天</td>
+              <td style="text-align:right;color:#ff9090;">56.4 天</td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="margin-top:0.5rem;font-size:0.8rem;color:#ff9090;">
+          <span class="ms ms-sm">trending_up</span> 全員委員會：111→114 年增加 <strong>+376%</strong>，從 24.5 天延長至 116.6 天
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>歷年申請 vs 核定件數（2018–2025）</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>年度</th><th style="text-align:right;">申請</th><th style="text-align:right;">核定</th><th style="text-align:right;">核定率</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2018–2021</td><td style="text-align:right;">553 件</td><td style="text-align:right;">553 件</td><td style="text-align:right;color:#7dda9e;">100%</td></tr>
+            <tr><td>2022 年</td><td style="text-align:right;">151 件</td><td style="text-align:right;">99 件</td><td style="text-align:right;color:#ffc547;">66%</td></tr>
+            <tr><td>2023 年</td><td style="text-align:right;">99 件</td><td style="text-align:right;">82 件</td><td style="text-align:right;color:#ffc547;">83%</td></tr>
+            <tr><td>2024 年</td><td style="text-align:right;">108 件</td><td style="text-align:right;">84 件</td><td style="text-align:right;color:#ff9090;">78%</td></tr>
+            <tr style="font-weight:700;"><td>2025 年</td><td style="text-align:right;">105 件</td><td style="text-align:right;">63 件</td><td style="text-align:right;color:#ff4444;">60%</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:0.5rem;font-size:0.8rem;color:#ff9090;">
+          <span class="ms ms-sm">warning</span> 2022 年起核定件數持續低於申請件數，積壓中的案件逐年累積
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 右欄 -->
+    <div class="col col-half">
+
+      <div class="card">
+        <h3>年度會議場次（民國 110–115 年）</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>年度</th><th style="text-align:right;">全員</th><th style="text-align:right;">專案</th><th style="text-align:right;">簡化</th><th style="text-align:right;">幹事會</th><th style="text-align:right;">合計</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>110 年</td><td style="text-align:right;">6</td><td style="text-align:right;">16</td><td style="text-align:right;">13</td><td style="text-align:right;">33</td><td style="text-align:right;font-weight:600;">68</td></tr>
+            <tr><td>111 年</td><td style="text-align:right;">11</td><td style="text-align:right;">13</td><td style="text-align:right;">12</td><td style="text-align:right;">29</td><td style="text-align:right;font-weight:600;">65</td></tr>
+            <tr><td>112 年</td><td style="text-align:right;">9</td><td style="text-align:right;">9</td><td style="text-align:right;">12</td><td style="text-align:right;">30</td><td style="text-align:right;font-weight:600;">60</td></tr>
+            <tr><td>113 年</td><td style="text-align:right;">16</td><td style="text-align:right;">11</td><td style="text-align:right;">15</td><td style="text-align:right;">32</td><td style="text-align:right;font-weight:600;">74</td></tr>
+            <tr><td>114 年</td><td style="text-align:right;">5</td><td style="text-align:right;">11</td><td style="text-align:right;">16</td><td style="text-align:right;">32</td><td style="text-align:right;font-weight:600;">64</td></tr>
+            <tr><td>115 年</td><td style="text-align:right;color:#9aa8cc;">3</td><td style="text-align:right;color:#9aa8cc;">4</td><td style="text-align:right;color:#9aa8cc;">3</td><td style="text-align:right;color:#9aa8cc;">14</td><td style="text-align:right;font-weight:600;color:#9aa8cc;">24 *</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:0.4rem;font-size:0.78rem;color:#6688aa;">* 115 年資料截至 2026-06-25</div>
+      </div>
+
+      <div class="card">
+        <h3>現況快照（2026-06-25）</h3>
+        <div class="stat-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="stat-box">
+            <div class="num" style="font-size:1.5rem;">51</div>
+            <div class="unit">件</div>
+            <div class="label">程序中案件</div>
+          </div>
+          <div class="stat-box">
+            <div class="num" style="font-size:1.5rem;">3,884</div>
+            <div class="unit">件</div>
+            <div class="label">歷史核定案件</div>
+          </div>
+          <div class="stat-box">
+            <div class="num" style="font-size:1.5rem;">7</div>
+            <div class="unit">人</div>
+            <div class="label">承辦員額</div>
+          </div>
+          <div class="stat-box" style="background:rgba(255,80,80,0.1);border-color:rgba(255,80,80,0.3);">
+            <div class="num" style="font-size:1.5rem;color:#ff9090;">116.6</div>
+            <div class="unit" style="color:#ff9090;">天</div>
+            <div class="label">全員委員會 114年均</div>
+          </div>
+          <div class="stat-box" style="background:rgba(255,80,80,0.1);border-color:rgba(255,80,80,0.3);">
+            <div class="num" style="font-size:1.5rem;color:#ff9090;">60%</div>
+            <div class="unit" style="color:#ff9090;">核定率</div>
+            <div class="label">2025 年</div>
+          </div>
+          <div class="stat-box">
+            <div class="num" style="font-size:1.5rem;">97,127</div>
+            <div class="unit">條</div>
+            <div class="label">歷史審查意見</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-accent">
+        <h3>AI 介入的必要性</h3>
+        <ul>
+          <li>審議天數 3 年內暴增 <span class="hl">3–4 倍</span>，不可能靠增加人力解決</li>
+          <li>核定率從 100% 降至 60%，<span class="hl">積壓案件</span>持續累積</li>
+          <li>97,127 條歷史意見是最有價值的 AI 訓練素材，<span class="hl-g">現成可用</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- ╔══ SLIDE 8 — 附錄 D：LINE BOT 開發實績 ══╗ -->
+<div id="s8" class="slide-wrapper content-slide">
+  <div class="slide-header">
+    <div class="slide-header-text">
+      <div class="slide-num">附錄 D · LINE BOT 開發實績</div>
+      <h2>已上線系統 — 概念驗證能力具備</h2>
+      <div class="sub">單位內部實際使用中 · 本人為唯一開發者 · 架構可直接移植至 POC</div>
+    </div>
+  </div>
+  <div class="appendix-body">
+
+    <!-- 左欄：技術堆疊 + 資料量 -->
+    <div class="col col-left">
+
+      <div class="card">
+        <h3><span class="ms ms-sm">layers</span> 技術堆疊</h3>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>層級</th>
+              <th>技術</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="tag-p1">後端</td><td>Python 3.12 + FastAPI (async)</td></tr>
+            <tr><td class="tag-p1">前端</td><td>React 19 + TypeScript + Vite</td></tr>
+            <tr><td class="tag-p1">資料庫</td><td>SQLite + GIS 空間欄位</td></tr>
+            <tr><td class="tag-p1">LINE</td><td>LIFF + Webhook + Rich Menu</td></tr>
+            <tr><td class="tag-p1">AI 對話</td><td>Claude Haiku（tool_use）</td></tr>
+            <tr><td class="tag-p1">排程</td><td>APScheduler（每日自動同步）</td></tr>
+            <tr><td class="tag-p1">部署</td><td>Docker + Cloudflare Tunnel</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3><span class="ms ms-sm">storage</span> 已累積資料量</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-top:0.3rem">
+          <div class="kpi-box kb1">
+            <div class="knum">3,943</div>
+            <div class="kunit">件</div>
+            <div class="klabel">歷史案件</div>
+          </div>
+          <div class="kpi-box kb2">
+            <div class="knum">2,882</div>
+            <div class="kunit">場</div>
+            <div class="klabel">會議場次</div>
+          </div>
+          <div class="kpi-box kb3">
+            <div class="knum">97,127</div>
+            <div class="kunit">條</div>
+            <div class="klabel">逐字稿條目</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 右欄：功能清單 + POC 意義 + 開發者說明 -->
+    <div class="col col-right">
+
+      <div class="card">
+        <h3><span class="ms ms-sm">check_circle</span> 已上線功能</h3>
+        <ul>
+          <li><span class="ms ms-sm ms-data">search</span> <span class="hl">案件查詢</span>：多欄位篩選、地圖定位、申請書 PDF 預覽</li>
+          <li><span class="ms ms-sm ms-data">bar_chart</span> <span class="hl">統計圖表</span>：6 類即時統計（審議天數、核定率、承辦人等）</li>
+          <li><span class="ms ms-sm ms-data">smart_toy</span> <span class="hl">AI 自然語言對話</span>：Claude Haiku 串接案件資料庫即時查詢</li>
+          <li><span class="ms ms-sm ms-data">article</span> <span class="hl">會議紀錄搜尋</span>：全文檢索 97,127 條逐字稿條目</li>
+          <li><span class="ms ms-sm ms-data">menu</span> <span class="hl">Rich Menu</span>：一鍵入口，每日自動更新資料</li>
+          <li><span class="ms ms-sm ms-data">admin_panel_settings</span> <span class="hl">管理員後台</span>：用戶審核、Bot 指令、快取管理</li>
+        </ul>
+      </div>
+
+      <div class="card card-accent">
+        <h3><span class="ms ms-sm">rocket_launch</span> 對 POC 推動的意義</h3>
+        <ul>
+          <li><span class="ms ms-sm ms-check">check</span> LINE LIFF + 後端 API 整合架構已完整驗證，不需從零摸索</li>
+          <li><span class="ms ms-sm ms-check">check</span> <span class="hl-g">97,127 筆</span>會議逐字稿為向量化 RAG 建庫提供直接原料</li>
+          <li><span class="ms ms-sm ms-check">check</span> Claude AI 已串接且穩定運行，熟悉 tool_use 與 prompt 設計</li>
+          <li><span class="ms ms-sm ms-check">check</span> Docker + Cloudflare 部署模式可直接移植至 POC 環境</li>
+        </ul>
+      </div>
+
+      <div class="card" style="text-align:center">
+        <p>
+          <span class="ms ms-sm ms-data">verified</span>
+          <strong class="hl">本人為系統唯一開發者</strong>，架構設計、前後端實作、部署維運全程自行完成<br>
+          POC 階段無需外部技術支援即可獨立產出可驗證成果
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ─── 導航 ─── -->
+<div class="dots">
+  <div class="dot" onclick="goTo(0)"></div>
+  <div class="dot" onclick="goTo(1)"></div>
+  <div class="dot" onclick="goTo(2)"></div>
+  <div class="dot" onclick="goTo(3)"></div>
+  <div class="dot" onclick="goTo(4)"></div>
+  <div class="dot" onclick="goTo(5)"></div>
+  <div class="dot" onclick="goTo(6)"></div>
+  <div class="dot" onclick="goTo(7)"></div>
+  <div class="dot" onclick="goTo(8)"></div>
+</div>
+
+<div class="score-badge" id="score-badge"></div>
+
+<script>
+const SCORE_LABELS = [
+  '',
+  '評分維度：問題清晰度',
+  '評分維度：解方可行性',
+  '評分維度：解方可行性 × 可驗證',
+  '評分維度：推動意願',
+  '附錄 A：落地計畫 × POC × 已就緒資產',
+  '附錄 B：推動條件 × 總費用試算',
+  '附錄 C：統計數據佐證',
+  '附錄 D：LINE BOT 開發實績 — POC 能力具備',
+];
+
+let cur = 0;
+const slides = document.querySelectorAll('.slide-wrapper');
+const dots   = document.querySelectorAll('.dot');
+const badge  = document.getElementById('score-badge');
+
+function goTo(n) {
+  slides[cur].classList.remove('active');
+  dots[cur].classList.remove('active');
+  cur = Math.max(0, Math.min(n, slides.length - 1));
+  slides[cur].classList.add('active');
+  dots[cur].classList.add('active');
+  badge.textContent = SCORE_LABELS[cur] || '';
+}
+
+function next() { goTo(cur + 1); }
+function prev() { goTo(cur - 1); }
+
+function printAll() {
+  // 讓所有投影片在列印時都顯示（已由 @media print 處理）
+  window.print();
+}
+
+document.addEventListener('keydown', e => {
+  if (['ArrowRight','ArrowDown',' '].includes(e.key)) { e.preventDefault(); next(); }
+  if (['ArrowLeft','ArrowUp'].includes(e.key))        { e.preventDefault(); prev(); }
+  if (e.key === 'p' && (e.ctrlKey || e.metaKey))     { e.preventDefault(); printAll(); }
+});
+
+// 初始化第一頁
+goTo(0);
+</script>
+</body>
+</html>

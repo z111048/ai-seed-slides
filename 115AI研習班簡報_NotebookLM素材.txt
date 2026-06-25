@@ -1,0 +1,432 @@
+═══════════════════════════════════════════════════════════════
+115 年度 AI 推動實務種子人才研習班（第二期）
+個人議題分享 — 純文本版（NotebookLM 素材）
+第五組 · 邱毓權 · 高雄市政府都市發展局 都市設計科
+═══════════════════════════════════════════════════════════════
+
+
+────────────────────────────────────────────────────────────────
+【封面】
+────────────────────────────────────────────────────────────────
+
+標題：AI 輔助都市設計審議報告書檢核系統
+
+副標題：多技術整合，降低初審與補正複查人力負擔
+
+報告人：邱毓權
+單位：高雄市政府都市發展局 都市設計科
+場合：個人議題分享 · 2026-06-25
+
+
+────────────────────────────────────────────────────────────────
+【第一頁】痛點現場 — 每案必審、每次必改
+評分維度：問題清晰度
+────────────────────────────────────────────────────────────────
+
+■ 受影響對象 × 發生環節
+
+受影響對象：7 名科室承辦人
+
+業務流程：
+  案件受理 → 初審逐頁核對 → 補正意見撰寫 → 複查版本差異 → 審議核定
+
+痛點 A（初審逐頁核對）：
+  逐頁確認章節完整性、書圖一致性、法規檢討、圖面標示等項目，規則明確但耗時。
+
+痛點 B（複查版本差異）：
+  每次補正後須比對前後版本差異；不熟悉規範的事務所需承辦人逐頁說明，大幅增加複查負擔。
+
+■ 量化規模
+
+  科室承辦員額：7 人
+  年均受理案量：約 100 件 / 年
+  當前程序中案件：59 件
+  每次補正複查耗時：約半天（4 小時）/ 次
+  平均補正輪次：2 至 4 次 / 案
+  全科年耗初審複查：約 200 人日 / 年
+
+■ 近 5 年審議淨工作天（實績數據）
+
+  全員委員會：平均 70.4 天（36 件核定）
+  專案委員會：平均 61.1 天（46 件核定）
+  簡化委員會：平均 51.4 天（111 件核定）
+  幹事會：平均 45.4 天（96 件核定）
+  簽證案：平均 22.5 天（39 件核定）
+
+  說明：初審與補正複查作業為可量化縮減的前段時間。
+
+■ 不解決的代價
+
+  - 200 人日 / 年流失於重複性格式比對
+  - 人才離職後隱性知識歸零，無法傳承
+  - 不熟悉規範的事務所拉長整體審議週期
+  - 承辦人無暇聚焦設計品質的實質審查
+
+
+────────────────────────────────────────────────────────────────
+【第二頁】AI 解方 — 多技術整合，分階段落地
+評分維度：解方可行性
+────────────────────────────────────────────────────────────────
+
+■ AI 技術地圖 × 應用場景
+
+  技術一：大型語言模型（P1 優先）
+    工具：訂閱制（Claude.ai / Microsoft Copilot）
+    解決痛點：格式檢核、補正意見草稿生成、法規問答
+
+  技術二：文件 OCR（P1 優先）
+    工具：Azure Document Intelligence / pdfplumber
+    解決痛點：報告書 PDF 轉為結構化章節與圖表
+
+  技術三：影像辨識（P2 優先）
+    工具：Vision LLM（訂閱 Multimodal）
+    解決痛點：書圖一致性比對、圖面標示自動確認
+
+  技術四：語音辨識（P2 優先）
+    工具：Whisper / Azure Speech
+    解決痛點：委員會 × 幹事會會議逐字稿自動產出
+
+  技術五：知識庫 RAG（P3 優先）
+    工具：本地向量資料庫
+    解決痛點：法規條文比對、歷史補正意見檢索
+
+■ 導入策略：先訂閱 → 再客製
+
+  - 初期以訂閱制工具驗證需求，不綁 API 帳單，採購流程簡單
+  - 機敏欄位去識別化後送入 AI Agent 輔助；雲端資源須待資安審查
+    與系統穩定性評估通過後才導入，不在 POC 階段使用
+  - POC 驗證有效後，視需求評估 API 或自建模型
+  - 現有都設審議 Bot 平台作為整合基礎，擴充 AI 模組
+
+■ 已盤點數據資產
+
+  - 歷史審議案件：3,884 件（含報告書、進度、核定資料，已入庫）
+  - 委員會 × 幹事會會議紀錄：2,882 場（近 15 年）
+  - 決議 × 審查意見全文：97,127 條（已結構化入庫）
+  - 常見補正意見大全（近 5 年）
+  - 都市設計相關法規、審議原則
+
+■ 預算概估（含持續費用）
+
+  一次性費用：
+    - POC 訂閱費：約 NT$9,000（3 個月）
+    - 人力投入：承辦人力約 30 人日（內部消化）
+    - 系統建置（OCR + LLM 模組開發 + 資安委外強化）：NT$100–200 萬
+
+  每月持續費用：
+    - LLM 訂閱費（Team 方案 × 7 人）：NT$7,000–12,000 / 月
+    - OCR + 語音辨識 API（視案量）：NT$1,500–3,000 / 月
+    - 雲端主機 / 向量 DB 儲存：NT$3,000–8,000 / 月
+    - 系統維護費（承包商）：NT$8,000–20,000 / 月
+    - 每月合計：NT$2–4 萬 / 月（年約 NT$25–50 萬）
+
+  說明：
+    - 雲端資源於資安審查通過後才導入，POC 期間以訂閱制為主
+    - 資安委外採政府共同供應契約框架，免重新招標
+    - 總擁有成本（TCO）= 一次性採購 + 年持續費用，
+      申請城鄉發展基金時應涵蓋首年維運費用
+
+■ 優先落地項目
+
+  P1（立即可做）：
+    - 報告書章節完整性自動檢核
+    - 補正意見草稿生成
+    - 會議前案件重點摘要
+
+  P2（次階段）：
+    - 會議逐字稿自動生成（語音辨識）
+    - 版本差異 × 補正回應追蹤
+
+  P3（後期推進）：
+    - 書圖一致性影像辨識檢核
+
+
+────────────────────────────────────────────────────────────────
+【第三頁】短期可驗證 — 90 天 POC 計畫
+評分維度：解方可行性 × 可驗證
+────────────────────────────────────────────────────────────────
+
+■ 第 1 個月 — 資料基礎建設
+
+  工作項目：
+    - OCR 處理近 3 年報告書（約 300 件）
+    - 結構化法規條文 × 補正意見庫
+    - 法規組 × 歷史資料組完成 Skill 技能包
+    - 建立向量索引（RAG 知識庫）
+  里程碑：知識庫可查詢，回答準確率 ≥ 80%
+
+■ 第 2 個月 — 內部 POC 開發 × 試用
+
+  工作項目：
+    - 訂閱制工具（Claude.ai / Whisper）串接報告書檢核
+    - 補正意見草稿生成器初版上線
+    - 科室承辦員試用 5 件真實案件
+    - 收集人工核對 vs AI 初稿比對結果（50 件樣本對照）
+  里程碑：格式檢核準確率 ≥ 85%，補正意見可用率 ≥ 70%
+  基線說明：以人工初審結果為對照，50 件真實案件作為樣本
+
+■ 第 3 個月 — Beta 測試 × 效益驗證
+
+  工作項目：
+    - 第一波：以機關內部及公家單位案件測試，確認系統穩定性
+    - 第二波：邀請常送件五大事務所案件測試，收集補正意見清晰度回饋
+    - 評估 Vision LLM 圖面辨識誤判率（列為獨立風險項）
+    - 完成功能需求清單，安全性評估，規劃正式採購
+    - 向長官呈報效益報告，研議資安審查時程與雲端導入可行性
+  里程碑：試辦案件複查時間縮短 ≥ 30%（以人工複查時間為基線對照）
+
+■ KPI 成效目標
+
+  - 複查工時縮減 ≥ 30%（90 天驗證目標）
+  - 格式檢核準確率 ≥ 85%（POC 第 2 個月）
+  - 5 家事務所 Beta 測試完成（POC 第 3 個月）
+  - 60+ 人日 / 年釋放（目標成效，保守估計）
+
+
+────────────────────────────────────────────────────────────────
+【第四頁】推動承諾 — 條件就緒，下一步明確
+評分維度：推動意願
+────────────────────────────────────────────────────────────────
+
+■ 長官支持
+
+  科長已口頭明確支持並授權啟動規劃；
+  2026-07-25 提交書面可行性簽呈，正式轉為書面授權。
+  副局長層級已於研習前知情並無異議。
+
+■ 預算來源
+
+  規劃申請高雄市城鄉發展及都市更新基金，
+  支應 POC 開發及後續正式採購費用（概估 NT$60–80 萬）。
+
+■ 分工規劃
+
+  法規組：整理法規 Skill 技能包
+  歷史資料組：整理補正意見範例
+  邱毓權：統籌技術開發
+
+■ 安全策略
+
+  機敏欄位去識別化後以 AI Agent 輔助處理；
+  雲端資源租用須待資安審查與系統穩定性評估通過後才考量導入，
+  不在 POC 階段使用。
+
+■ 下一步行動（訓後 30 天）
+
+  2026-07-13：科室三組第一次 Kick-off 會議
+  2026-07-25：向科長提交書面可行性評估報告（轉書面授權）
+  持續進行：啟動科室內資料盤點 SOP 制定
+  持續進行：以現有都設審議 Bot 平台擴充 AI 檢核模組
+  2026-08：城鄉發展基金申請窗口提出預算規劃書
+
+■ 核心承諾
+
+  2026-07-25：書面可行性報告送科長核閱
+  2026-09-25：完成內部 POC 並量化成效
+  最終目標：每位承辦同仁每年節省 ≥ 1 個月重複性作業時間
+
+
+────────────────────────────────────────────────────────────────
+【第五頁（附錄）】落地可行性 × POC 規劃 × 已就緒資產
+加分項目補充說明
+────────────────────────────────────────────────────────────────
+
+■ 分階段分模組開發計畫書
+
+  Phase 1（月 1–3）：
+    模組 A — 文件 OCR 解析
+      技術：Azure Doc Intelligence / pdfplumber
+      里程碑：報告書可結構化查詢
+    模組 B — RAG 知識庫建立
+      技術：本地向量 DB + 法規 × 補正意見
+      里程碑：問答準確率 ≥ 80%
+
+  Phase 2（月 4–6）：
+    模組 C — 格式 × 章節完整性檢核
+      技術：LLM + Rule Engine（訂閱制）
+      里程碑：格式準確率 ≥ 85%
+    模組 D — 補正意見草稿生成
+      技術：LLM + 歷史補正意見 RAG
+      里程碑：可用率 ≥ 70%
+
+  Phase 3（月 7–12）：
+    模組 E — 語音辨識逐字稿
+      技術：Whisper / Azure Speech
+      里程碑：會議逐字稿自動產出
+    模組 F — 版本差異 × 補正追蹤
+      技術：Diff Engine + LLM 摘要
+      里程碑：版本比對自動標記
+    模組 G — 書圖一致性影像辨識
+      技術：Vision LLM（待資安評估）
+      里程碑：圖面誤判率 < 10%
+
+■ 產品 POC — Claude Code 快速開發
+
+  - 使用 Claude Code 開發 POC 雛型，可快速迭代驗證
+  - 第一波測試：機關內部及公家單位案件
+    （控制資安風險，驗證系統穩定性）
+  - 第二波測試：常送件五大事務所案件封閉測試
+    （驗證真實效益，收集使用回饋）
+  - 穩定性與資安評估通過後，再由廠商協助正式化
+
+■ 已就緒資產（規劃中案件）
+
+  案件申請基本資料：
+    3,884 件歷史案件已入庫（含申請資訊、進度、核定資料）
+
+  歷史案件報告書：
+    近 3 年約 300 件 PDF（待 OCR 解析）
+
+  會議紀錄逐字稿：
+    97,127 條決議意見，2,882 場會議（近 15 年），已結構化入庫
+
+  補正意見大全：
+    近 5 年常見缺失清單與補正範例
+
+■ 推動支持條件
+
+  長官支持度：高
+    科長口頭授權啟動規劃，副局長已知情
+
+  經費來源預算：
+    高雄市城鄉發展及都市更新基金
+    （申請時應涵蓋首年維運費用）
+
+  技術統籌能力：
+    報告人具前端（Node.js）與後端（Python）開發能力，
+    可自主推動 POC 開發，降低外部依賴風險
+
+  總費用試算（Total Cost of Ownership）：
+
+    一次性採購：
+      POC 訂閱費                   ~NT$9,000
+      系統建置 + 資安委外          NT$100–200 萬
+
+    每月持續費用：
+      LLM 訂閱費（Team × 7人）    NT$7,000–12,000 / 月
+      OCR + 語音辨識 API           NT$1,500–3,000 / 月
+      雲端主機 / 向量 DB           NT$3,000–8,000 / 月
+      系統維護費（承包商）         NT$8,000–20,000 / 月
+      ─────────────────────────────────────────
+      每月合計                     NT$2–4 萬 / 月
+      年度持續費用                 約 NT$25–50 萬 / 年
+
+
+═══════════════════════════════════════════════════════════════
+簡報設計風格建議 × Gamma / Beautiful.ai / Canva 提示詞
+═══════════════════════════════════════════════════════════════
+
+【整體設計方向】
+
+  主題定位：政府數位轉型 × AI 技術導入
+  色系建議：深海藍底（#0f2940）× 電光藍強調（#7ecfff）× 翠綠輔助（#7dda9e）
+  字型建議：標題 Noto Sans TC Bold，內文 Noto Sans TC Regular
+  風格關鍵字：科技感、可信賴、資料驅動、清晰條理
+
+
+────────────────────────────────────────────────────────────────
+【封面】提示詞
+────────────────────────────────────────────────────────────────
+
+A dark navy blue presentation slide cover with a subtle grid or circuit-board pattern in the background.
+Centered layout with a large glowing AI/robot icon at the top in electric blue (#7ecfff).
+Main title in large bold white Chinese text: "AI 輔助都市設計審議報告書檢核系統".
+Subtitle in medium light blue text below.
+Three rounded tag chips at the bottom showing name, organization, and department.
+Clean, professional, government digital transformation theme.
+Noto Sans TC font. Dark background #0f2940. Accent color #7ecfff.
+
+
+────────────────────────────────────────────────────────────────
+【第一頁：痛點現場】提示詞
+────────────────────────────────────────────────────────────────
+
+A dark navy presentation slide titled "痛點現場 — 每案必審、每次必改".
+Left section shows a horizontal workflow diagram with 5 steps connected by arrows:
+  受理 → 初審（red warning highlight）→ 補正 → 複查（red warning highlight）→ 核定
+Two red-highlighted warning callout boxes below the flow explaining each pain point.
+Below that, a 2×3 grid of metric cards with large numbers in electric blue:
+  7人 / ~100件/年 / 59件 / ½天/次 / 2-4次/案 / ~200人日/年
+Right section shows two cards: historical review days by committee type (5 rows), and consequences of inaction (4 bullet points with red icons).
+Dark background, electric blue accent, data-driven government tech style.
+
+
+────────────────────────────────────────────────────────────────
+【第二頁：AI 解方】提示詞
+────────────────────────────────────────────────────────────────
+
+A dark navy AI technology landscape slide titled "AI 解方 — 多技術整合，分階段落地".
+Left section contains a structured table mapping 5 AI technologies to tools and use cases:
+  LLM（訂閱制）/ OCR / 影像辨識 / 語音辨識 / RAG 知識庫
+Each row has a distinct icon and color coding: blue for P1, yellow for P2, gray for P3.
+Below the table, a strategy card with blue accent showing "先訂閱 → 再客製" approach.
+Right section shows a data asset summary card with large numbers (3,884件 / 2,882場 / 97,127條),
+a budget estimate card in gold/amber tones, and a priority feature list table.
+Modern tech infographic style, dark background, multi-color icon system.
+
+
+────────────────────────────────────────────────────────────────
+【第三頁：90天 POC 計畫】提示詞
+────────────────────────────────────────────────────────────────
+
+A dark navy presentation slide titled "短期可驗證 — 90 天 POC 計畫".
+Main section shows three vertical timeline phase cards side by side:
+  Phase 1 (blue): 資料基礎建設 with milestone badge
+  Phase 2 (green): 內部 POC 開發 with milestone badge
+  Phase 3 (amber): Beta 測試 × 效益驗證 with milestone badge
+Each card has a header icon, 4 bullet points, and a KPI milestone bar at the bottom.
+Below the timeline, a row of 4 KPI metric boxes with large numbers:
+  ≥30% 複查縮減 / ≥85% 準確率 / 5家測試 / 60+人日/年
+Each KPI box in a different accent color (blue / green / gold / red).
+Clean data dashboard aesthetic, government digital transformation style.
+
+
+────────────────────────────────────────────────────────────────
+【第四頁：推動承諾】提示詞
+────────────────────────────────────────────────────────────────
+
+A dark navy presentation slide titled "推動承諾 — 條件就緒，下一步明確".
+Left section shows a 2×2 grid of commitment cards, each with a large Material icon:
+  account_balance（長官支持）/ payments（預算）/ groups（分工）/ shield（安全）
+Each card has a blue icon, bold subtitle, and descriptive text.
+Right section shows a vertical action checklist with green check icons and specific dates:
+  2026-07-13 / 2026-07-25 / 2026-08
+Below that, a highlighted promise card in blue accent with three commitment statements
+  and a savings goal "節省 ≥ 1 個月/人/年" prominently displayed.
+Professional government accountability slide style, trust-building layout.
+
+
+────────────────────────────────────────────────────────────────
+【第五頁：附錄】提示詞
+────────────────────────────────────────────────────────────────
+
+A dark navy appendix slide titled "落地可行性 × POC 規劃 × 已就緒資產".
+Left section shows a detailed 3-phase module development roadmap table with 7 rows:
+  Phase 1 (blue rows): OCR + RAG
+  Phase 2 (teal rows): 格式檢核 + 補正生成
+  Phase 3 (amber rows): 語音 + 差異追蹤 + 影像辨識
+Each row shows module name, technology, and milestone.
+Right section has three stacked cards:
+  Top card (blue): Claude Code POC approach with two-wave testing strategy
+  Middle card (neutral): Data asset inventory table with 4 rows of existing resources
+  Bottom card (green): Support conditions — executive backing, budget source, technical capability
+Comprehensive appendix style, dense but organized, dark background.
+
+
+═══════════════════════════════════════════════════════════════
+給 NotebookLM 的使用說明
+═══════════════════════════════════════════════════════════════
+
+將本文件上傳至 NotebookLM 後，建議使用以下提示語生成簡報大綱：
+
+  「請根據這份文件的六個章節，分別生成每一頁投影片的演講稿，
+   每頁約 1 分鐘，重點突出量化數據與具體行動承諾，
+   語氣正式但口語化，適合 5 分鐘公務簡報使用。」
+
+  「請將文件中的技術術語（OCR、RAG、LLM、Vision LLM、AI Agent）
+   用公務員可理解的白話文重新詮釋，保留數字與流程邏輯。」
+
+  「請根據評分標準（問題清晰度 5 分 / 解方可行性 5 分 / 推動意願 5 分），
+   逐一確認這份簡報的內容是否完整對應每個評分錨點。」
+
+═══════════════════════════════════════════════════════════════
