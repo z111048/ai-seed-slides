@@ -15,7 +15,10 @@
 
 <style>
 /* ─── 基準字級 — 行動裝置稍小 ─── */
-html { font-size: clamp(13px, 4vw, 20px); }
+html {
+  font-size: clamp(13px, 4vw, 20px);
+  scroll-behavior: smooth;
+}
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -275,7 +278,19 @@ body {
 }
 
 /* ══════ 表格 ══════ */
-.table-wrap { overflow: hidden; }
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* 細捲軸提示 */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(126,207,255,0.3) transparent;
+}
+.table-wrap::-webkit-scrollbar { height: 3px; }
+.table-wrap::-webkit-scrollbar-track { background: transparent; }
+.table-wrap::-webkit-scrollbar-thumb {
+  background: rgba(126,207,255,0.3);
+  border-radius: 2px;
+}
 .data-table {
   width: 100%;
   border-collapse: collapse;
@@ -421,9 +436,15 @@ body {
   border: 1px solid rgba(126,207,255,0.25);
   border-radius: 1rem;
   white-space: nowrap;
-  transition: background 0.2s;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 .toc-link:hover { background: rgba(126,207,255,0.12); }
+.toc-link.active {
+  background: rgba(126,207,255,0.18);
+  border-color: rgba(126,207,255,0.6);
+  color: #fff;
+  font-weight: 600;
+}
 
 /* ══════ Slide 02 專用：內容較多，壓縮間距 ══════ */
 #s2 .slide-header { padding: 0.9rem 2.6rem 0.6rem; }
@@ -485,33 +506,58 @@ body {
 @media (max-width: 768px) {
   html { font-size: clamp(12px, 4.5vw, 17px); }
 
-  .slide-body { padding: 0.8rem 1rem 1rem; gap: 0.8rem; flex-direction: column; }
-  .appendix-body { padding: 0.6rem 0.8rem 0.8rem; gap: 0.8rem; flex-direction: column; }
+  /* ─ 版面 ─ */
+  .slide-body    { padding: 0.9rem 0.9rem 1.1rem; gap: 0.8rem; flex-direction: column; }
+  .appendix-body { padding: 0.7rem 0.9rem 1rem;  gap: 0.8rem; flex-direction: column; }
 
   .col-left, .col-right, .col-half { flex: none !important; width: 100%; }
 
-  .slide-header { padding: 1rem 1rem 0.7rem; }
-  .slide-header h2 { font-size: 1.3rem; }
+  /* ─ 標題列 ─ */
+  .slide-header { padding: 0.9rem 0.9rem 0.65rem; }
+  .slide-header h2 { font-size: 1.25rem; line-height: 1.3; }
+  .slide-header .sub { font-size: 0.82rem; }
 
-  /* 封面字型縮小 */
-  #s0 h1 { font-size: 1.8rem; }
-  #s0 .meta { flex-wrap: wrap; gap: 0.5rem; }
+  /* ─ 卡片 ─ */
+  .card { padding: 0.75rem 0.85rem; }
+  .card h3 { font-size: 0.77rem; }
 
-  /* 時間軸改直排 */
+  /* ─ 封面 ─ */
+  #s0 h1 { font-size: 1.75rem; }
+  #s0 h2 { font-size: 1rem; }
+  #s0 .meta { flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+  #s0 .cover-avatar { width: 4.5rem; height: 4.5rem; }
+
+  /* ─ 流程步驟 ─ */
+  .flow { gap: 0.3rem; }
+  .flow-step { font-size: 0.82rem; padding: 0.35em 0.6em; }
+
+  /* ─ 數據格 ─ */
+  .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
+  .stat-box .num { font-size: 1.6rem; }
+
+  /* ─ 時間軸改直排 ─ */
   .timeline { flex-direction: column; }
 
-  /* 承諾卡片 2x2 改單欄 */
+  /* ─ 承諾卡片 2x2 → 單欄 ─ */
   .commit-grid { grid-template-columns: 1fr; }
 
-  /* KPI 4欄改2欄 */
-  .kpi-row { grid-template-columns: 1fr 1fr; }
+  /* ─ KPI 4 欄 → 2 欄 ─ */
+  .kpi-row { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .kpi-box .knum { font-size: 1.3rem; }
 
-  /* stat grid 3欄改2欄 */
-  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  /* ─ 表格：table-wrap 已在 base 設為 overflow-x:auto，
+        td 加 white-space:nowrap 讓欄寬由內容決定 ─ */
+  .data-table th,
+  .data-table td { white-space: nowrap; }
+  /* 部分欄位需要折行（描述性文字），以 class 標記允許 */
+  .data-table td.wrap { white-space: normal; min-width: 10em; }
 
-  /* 表格允許橫向捲動 */
-  .table-wrap { overflow-x: auto; }
-  .data-table { min-width: 500px; }
+  /* ─ 附錄表格多欄：確保有足夠最小寬度 ─ */
+  .appendix-body .data-table { min-width: max-content; }
+
+  /* ─ TOC ─ */
+  .toc-bar { padding: 0.45rem 0.75rem; gap: 0.4rem; }
+  .toc-link { font-size: 0.7rem; padding: 0.25em 0.6em; }
 }
 
 /* ══════ 列印 ══════ */
@@ -1511,6 +1557,62 @@ document.addEventListener('keydown', e => {
 
 // 初始化第一頁
 goTo(0);
+</script>
+
+<script>
+/* ════════════════════════════════════════════════
+   RWD 強化腳本
+   1. 自動將無 .table-wrap 包裹的 .data-table 加上 wrapper
+   2. IntersectionObserver：TOC 高亮當前可見段落
+════════════════════════════════════════════════ */
+
+// 1. 自動包裹尚未有 .table-wrap 的表格
+document.querySelectorAll('.data-table').forEach(table => {
+  if (!table.closest('.table-wrap')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'table-wrap';
+    table.parentNode.insertBefore(wrap, table);
+    wrap.appendChild(table);
+  }
+});
+
+// 2. TOC 高亮
+(function initTocHighlight() {
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const sections = document.querySelectorAll('.slide-wrapper[id]');
+  if (!sections.length || !tocLinks.length) return;
+
+  // 建立 id → link 映射
+  const linkMap = {};
+  tocLinks.forEach(link => {
+    const id = link.getAttribute('href').replace('#', '');
+    linkMap[id] = link;
+  });
+
+  let activeId = null;
+
+  const observer = new IntersectionObserver(entries => {
+    // 收集本次所有進入視窗的區塊
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        if (linkMap[id]) {
+          // 移除所有 active
+          tocLinks.forEach(l => l.classList.remove('active'));
+          linkMap[id].classList.add('active');
+          activeId = id;
+          // 讓 TOC 捲到可見
+          linkMap[id].scrollIntoView({ inline: 'nearest', block: 'nearest' });
+        }
+      }
+    });
+  }, {
+    rootMargin: '-48px 0px -55% 0px', // 頂部留 TOC 高度，底部留過半以上
+    threshold: 0
+  });
+
+  sections.forEach(sec => observer.observe(sec));
+})();
 </script>
 </body>
 </html>
